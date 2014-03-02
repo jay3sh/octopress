@@ -1,0 +1,92 @@
+---
+layout: post
+title: "Mac book red light audio jack problem on Linux"
+date: 2010-10-29
+comments: false
+categories:
+ - linux
+ - audio
+ - ubuntu
+ - macbook
+---
+
+<div class='post'>
+When I upgraded my Macbook (2,1) to Ubunut 10.10 last week, I realized after a while that it wouldn't play any audio through the audio jack. The built-in speakers were working well, but as soon as I plugged in the headphone the built-in speakers would go off (as expected) and the headphone would be quiet too.<br /><br />Then I got little concerned when I saw the red glow coming out of the audio jack. This macbook is now 4 years old, so I assumed the red light means some malfunction. But after I searched around, I found it was a known issue. The red light wasn't any indicator, but optical audio output. Many mac forums had discussions on this topic. Most of them fixed it by sticking a pin or toothpick into the jack, juggling around a little or shorting some internal probes. They reported that this eventually turns the light off and audio out was switched back to traditional wired output. I tried the same, but no luck. In retrospect, those all posts were with Mac OSX installed. So in their case, the optical audio output was probably turned on in hardware and had no way to turn off in software. Whatever the case, their solution didn't work on my Ubuntu installation.<br /><br />I figured that, the optical audio output was not turned on in hardware, because when I rebooted the laptop in Mac OSX the red light used to go off and headphones worked. So now it remained to find some software tweak to fix the problem. Eventually I found this <a href="http://ubuntuforums.org/showthread.php?t=898904">thread</a> on ubuntu forums. Following two commands fixed the problem.<br /><br /><pre># Turns off the optical audio out<br />amixer set IEC958 off<br /><br /># Turns on the headphone speakers<br />amixer set Speaker,1 on<br /><br /># In case you want to tweak built-in speakers<br />amixer set Speaker,0 on<br /></pre><br />If your system is different than mine, it will help to run&nbsp;<span class="Apple-style-span" style="font-family: monospace; white-space: pre;">amixer </span>without any options and see the list of audio channels and their states it prints out.<br /><br />Hope this trick helps someone.<br /><br />Ads:<br /><iframe align="left" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="http://rcm.amazon.com/e/cm?t=myfreq-20&amp;o=1&amp;p=8&amp;l=bpl&amp;asins=0470082933&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr" style="align: left; height: 245px; padding-right: 10px; padding-top: 5px; width: 131px;"></iframe><iframe align="left" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="http://rcm.amazon.com/e/cm?t=myfreq-20&amp;o=1&amp;p=8&amp;l=bpl&amp;asins=013254248X&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr" style="align: left; height: 245px; padding-right: 10px; padding-top: 5px; width: 131px;"></iframe><iframe align="left" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="http://rcm.amazon.com/e/cm?t=myfreq-20&amp;o=1&amp;p=8&amp;l=bpl&amp;asins=0321278542&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr" style="align: left; height: 245px; padding-right: 10px; padding-top: 5px; width: 131px;"></iframe><iframe align="left" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" src="http://rcm.amazon.com/e/cm?t=myfreq-20&amp;o=1&amp;p=8&amp;l=bpl&amp;asins=0596153287&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr" style="align: left; height: 245px; padding-right: 10px; padding-top: 5px; width: 131px;"></iframe></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+worked (: thanks a lot !!<br /></div>
+</div>
+<div class='comment'>
+<div class='author'>Andrew Roden</div>
+<div class='content'>
+Helped me much. The CLI is the same as muting the SPDIF in the mixer</div>
+</div>
+<div class='comment'>
+<div class='author'>J P</div>
+<div class='content'>
+Thanks a lot.</div>
+</div>
+<div class='comment'>
+<div class='author'>J P</div>
+<div class='content'>
+Thanks a lot.<br />Just saw this issue on my macbook / ubuntu 12.04, and got it fixed in minutes :)</div>
+</div>
+<div class='comment'>
+<div class='author'>J P</div>
+<div class='content'>
+Thanks a lot.<br />Just saw this issue on my ubuntu 12.04 / macbook and got it fixed in minutes :)<br /></div>
+</div>
+<div class='comment'>
+<div class='author'>delaserna444</div>
+<div class='content'>
+Awesome!<br />Thank&#39;s a lot for the tip.<br />Nothing else Google spit out worked bar this.<br /><br />Note:<br />when I first tried to enter the commands it didn&#39;t work and said that Speaker is not a known identifier, so I ran amixer to look for the right identifier there I copy-pasted the values &#39;Speaker&#39;,0 and &#39;Speaker&#39;,1 and used it instead of what stood in the instructions and it worked! Just in case someone has the same problem.</div>
+</div>
+<div class='comment'>
+<div class='author'>guy keulemans</div>
+<div class='content'>
+This is for linux? Is there anyway to use this fix in Max os x?</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Consider someone helped! Thanks very much :)</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Thanks!! worked perfectly :-)</div>
+</div>
+<div class='comment'>
+<div class='author'>Jasonzeppelin</div>
+<div class='content'>
+Awesome thanks!</div>
+</div>
+<div class='comment'>
+<div class='author'>gHost</div>
+<div class='content'>
+Thank you very much for your instructions. This saved me a lot of headache. I hope those who are considering the toothpick/q-tip/paper-clip solution see this first.</div>
+</div>
+<div class='comment'>
+<div class='author'>gHost</div>
+<div class='content'>
+This comment has been removed by the author.</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Thanks! This issue has been around since I purchased mine 4 years ago. I finally decided to fix the issue and this worked right away.</div>
+</div>
+<div class='comment'>
+<div class='author'>Hector</div>
+<div class='content'>
+Thank you very much. My situation mirrors (-ed) yours. Very clear writing and friendly instructions.</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Thanks!</div>
+</div>
+</div>

@@ -1,0 +1,61 @@
+---
+layout: post
+title: "Static IP configuration on Fedora 10"
+date: 2009-03-01
+comments: false
+categories:
+ - fedora
+ - debugging
+ - networking
+---
+
+<div class='post'>
+<span style="font-size: 100%;">Until last week Hathway (my ISP in Mumbai) was asking me to do DHCP discovery for IP address. After the n/w stopped working yesterday I called their service rep. One of them couldn't resolve it yesterday, so he forwarded me to another guy who turned out to be a funny experience - he gave me all the static IP config valus - and when the network still won't work he started blaming it on computer virus and ultimately <span style="font-style: italic;">rust on my network cable</span> (!) Fortunately for me (and also for him) the modem was little sluggish in picking up the change and the network started working.<br /></span><br />I had booted my new computer in Vista (yeah I know! argh!) and it worked fine. Surprisingly my Fedora 10 on Macbook and also the Fedora 10 on desktop won't respond to the static IP information. It took me 4 hours to figure out that there was nothing wrong in my knowledge of the network scripts. I got the clue when I found the system doing DHCP discovery even when I had set it to static IP. I figured it was because of the NetworkManager (seen as that taskbar network icon). When I googled, it became clear that configuring Fedora 10 with static IP is a known problem and the culprit is NetworkManager and/or system-config-network utility. This thread (<a href="http://forums.fedoraforum.org/showpost.php?p=1134502&amp;postcount=14">#14</a>) is pretty much helpful, but the working solution (or workaround) is not definite.<br /><br />Here is what worked for me (at least for this box).<br /><br /><span style="font-family: arial;"># Stop NetworkManager</span><br /><span style="font-family: arial;">sudo service NetworkManager stop</span><br /><br /><span style="font-family: arial;"># Disable NetworkManager service</span><br /><span style="font-family: arial;">sudo chkconfig NetworkManager off</span><br /><br /><span style="font-family: arial;"># Enable netwok service</span><br /><span style="font-family: arial;">sudo chkconfig network on</span><br /><br /><span style="font-family: arial;"># Run system-config-network</span><br /><span style="font-family: arial;"># Edit the ethernet device under Device tab</span><br /><span style="font-family: arial;"># Under "Manual IP Address settings" put static IP Address.</span><br /><span style="font-family: arial;"># </span><span style="font-family: arial; font-weight: bold;">Leave Subnet mask and Default Gateway blank</span><br /><span style="font-family: arial;"># Change to Route tab</span><br /><span style="font-family: arial;"># Add route Dest 0.0.0.0 Netmask 0.0.0.0 Gateway </span><gateway ip=""><br /><span style="font-family: arial;"># Add route Dest </span><static addr="" fourth="" ip="" octet="" with="" zero=""><span style="font-family: arial;"> Netmask </span><provided netmask=""><span style="font-family: arial;"> Gateway </span><blank><br /><span style="font-family: arial;"># Change to DNS tab to put addresses of DNS servers</span><br /><span style="font-family: arial;"># Check "Activate device when computer starts" same as ONBOOT=yes (I guess)</span><br /><span style="font-family: arial;"># Save the settings</span><br /><br /><span style="font-family: arial;">sudo service network restart</span><br /><br />At this point network should be working. If it doesn't don't get surprised. The same steps don't help me setup my Macbook Fedora 10 with static IP. Maybe I have screwed it beyond repair. I will wait for the router to arrive, to get my macbook online.<br /></blank></provided></static></gateway><br /><gateway ip=""><static addr="" fourth="" ip="" octet="" with="" zero=""><provided netmask=""><blank><br /></blank></provided></static></gateway><br /><gateway ip=""><static addr="" fourth="" ip="" octet="" with="" zero=""><provided netmask=""><blank>Ads:</blank></provided></static></gateway><br /><gateway ip=""><static addr="" fourth="" ip="" octet="" with="" zero=""><provided netmask=""><blank>*&nbsp;<a href="http://www.amazon.com/Linux-Administration-Handbook-2nd-Nemeth/dp/0131480049?ie=UTF8&amp;tag=myfreq-20&amp;link_code=btl&amp;camp=213689&amp;creative=392969" target="_blank">Linux Administration Handbook (2nd Edition)</a><img alt="" border="0" height="1" src="http://www.assoc-amazon.com/e/ir?t=myfreq-20&amp;l=btl&amp;camp=213689&amp;creative=392969&amp;o=1&amp;a=0131480049" style="border: none !important; margin: 0px !important; padding: 0px !important;" width="1" />&nbsp;(Best tips on Linux administration I found in this book. Own it myself.)</blank></provided></static></gateway><br /><gateway ip=""><static addr="" fourth="" ip="" octet="" with="" zero=""><provided netmask=""><blank>*&nbsp;<a href="http://www.amazon.com/Fedora-Bible-2010-Featuring-Linux/dp/0470554193?ie=UTF8&amp;tag=myfreq-20&amp;link_code=btl&amp;camp=213689&amp;creative=392969" target="_blank">Fedora Bible 2010 Edition: Featuring Fedora Linux 12</a><img alt="" border="0" height="1" src="http://www.assoc-amazon.com/e/ir?t=myfreq-20&amp;l=btl&amp;camp=213689&amp;creative=392969&amp;o=1&amp;a=0470554193" style="border: none !important; margin: 0px !important; padding: 0px !important;" width="1" /></blank></provided></static></gateway><br /><gateway ip=""><static addr="" fourth="" ip="" octet="" with="" zero=""><provided netmask=""><blank>*&nbsp;<a href="http://www.amazon.com/Linux-Networking-Cookbook-Carla-Schroder/dp/0596102488?ie=UTF8&amp;tag=myfreq-20&amp;link_code=btl&amp;camp=213689&amp;creative=392969" target="_blank">Linux Networking Cookbook</a><img alt="" border="0" height="1" src="http://www.assoc-amazon.com/e/ir?t=myfreq-20&amp;l=btl&amp;camp=213689&amp;creative=392969&amp;o=1&amp;a=0596102488" style="border: none !important; margin: 0px !important; padding: 0px !important;" width="1" /></blank></provided></static></gateway></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+"I didn't even have to restart, just reconnect to my network and it works perfectly!"<br /><br />That's where the funny point is. After reconfiguring my Fedora 10 to use static IP, it works perfectly at once. However, if I restart the system, either it forgets all about the config, or the network interface is completely missing.</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+I found a solution! =D Go to System -&gt; Admin. -&gt; Network and edit your device click &quot;Allow all users to enable and disable this device&quot; under Manual IP enter desired address but leave subnet and gateway blank.<BR/><BR/>Switch to route tab<BR/><BR/>Add route Dest Netmask Gateway<BR/><BR/>(I didn&#39;t have to put in a 0.0.0.0 entry)<BR/><BR/>save settings then right click network manager icon in and select &quot;Edit Connections&quot; choose device from list and click edit. Under IPv4 Settings tab enter Address, Netmask, Gateway, and DNS servers. Then hit apply.<BR/><BR/>I didn&#39;t even have to restart, just reconnect to my network and it works perfectly!</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Sorry to hear wicd didn't work =(. Luckily though your work around fixed it for me. Thank you very much!</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Tried wicd on my laptop for static configuration. It didn't work. I shows the wired network is connected, but no answer to pings to the gateway server. Very likely I have screwed the wired setting of my laptop F10 beyond repair. Thankfully my PC F10 can connect without any problems.</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Any word on wicd working with static ip in fedora? I've been having the same issue after upgrading to core 10.</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+wicd does have nice GUI. tried it just now, worked on my wifi; will try later with the static IP. Thanks.</div>
+</div>
+<div class='comment'>
+<div class='author'>Suresh</div>
+<div class='content'>
+I guess you could try uninstalling the gnome network manager and using wicd instead.</div>
+</div>
+<div class='comment'>
+<div class='author'>Suresh</div>
+<div class='content'>
+Had the same problem with the latest Ubuntu. I believe the problem is with the new gnome NetworkManager.</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Looks like some parts in the instructions etween &quot;&lt; &gt;&quot; were eaten by the blogspot editor automatically.<BR/><BR/>Sorry for that!</div>
+</div>
+</div>

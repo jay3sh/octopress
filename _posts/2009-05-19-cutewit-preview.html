@@ -1,0 +1,34 @@
+---
+layout: post
+title: "Cutewit (preview)"
+date: 2009-05-19
+comments: false
+categories:
+ - altcanvas
+ - svg
+ - inkscape
+ - twitter
+ - inkface
+ - android
+---
+
+<div class='post'>
+This blog has been quiet lately despite all the things I have to share. The main culprit is Twitter. Everything there is to share, trickles away 140 characters a time and nothing is left for a long blog post.<br /><br />Well, here is an update. I spent the last month applying all the ideas from the inkface library to the Android platform. During the exercise I have written an Android App - a Twitter client - <a href="http://www.altcanvas.com/android/cutewit">Cutewit</a>. Few hours ago I uploaded a preview version of the app, to Android market and <a href="http://slideme.org/application/cutewit-preview">SlideMe</a>. Here are some screenshots:<br /><br /><embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf" flashvars="host=picasaweb.google.com&amp;hl=en_US&amp;feat=flashalbum&amp;RGB=0x000000&amp;feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2Fjayeshsalvi%2Falbumid%2F5337213129121837329%3Falt%3Drss%26kind%3Dphoto%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer" height="400" width="600"></embed><br /><br />All the GUI was developed in Inkscape as SVG images. The app lacks many features, but they will soon be coming in the 1.0 release.<br /><br />If you have Android phone, give it a shot. Even if you don't have a phone (not unlike me) you can still try it in Android emulator that's part of the SDK. I myself plan to use it as a desktop app, running in the emulator window.<br /><br />That's all for now... follow me on twitter (@jyro) if you are interested in updates.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Thanks Jan. <br /><br />The primary target for Inkface based GUI is Mobile platforms. The python inkface code hosted at http://code.google.com/p/altcanvas is targeted at Mobile linux platforms (Maemo/OpenMoko, etc.) So I&#39;ve never run it on Windows machine. They can run on Linux desktop. The backends on which I got inkface running were pygame (i.e. python bindings of SDL), and evas (the enlightenment project). I was working on Qt backend too, but didn&#39;t complete it. Out of these, I believe pygame is ported on Windows (http://www.pygame.org/install.html), inkface code is all python code. So you can technically run inkface with pygame backend on a Windows box. <br /><br />OR the easiest way would be to use a Linux desktop - if you don&#39;t have a physical one, run a virtual machine with linux in it. <br /><br />Hope that helps.<br /><br />Just for clarification, Cutewit is not based on the inkface code available at above link. Cutewit is android app written completely in Java. It uses similar concepts as inkface, but the code is not the same, (and not open source).</div>
+</div>
+<div class='comment'>
+<div class='author'>Jan</div>
+<div class='content'>
+ow might mention i&#39;m not a python expert. Just basic programming knowledge.</div>
+</div>
+<div class='comment'>
+<div class='author'>Jan</div>
+<div class='content'>
+Hey Jayesh<br /><br />I was looking for ways to separate user interface and code and stumbled upon your work.  The inkface concept looks very promising. Also using svg is brilliant. (i not only say that because i was having a similar idea :) )<br /><br />Perhaps you can help me with the following:<br /><br />- do the examples run on windows (or what needs to be changed)?, can&#39;t seem to get them working.<br /><br />I also want to separate all event handling from the actual code.  With a central event handler deciding over actions/code on all events.<br /><br />yours sincerely,<br /><br />Jan</div>
+</div>
+</div>

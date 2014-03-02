@@ -1,0 +1,22 @@
+---
+layout: post
+title: "more fun with notify-send"
+date: 2008-11-12
+comments: false
+---
+
+<div class='post'>
+I <a href="http://jyro.blogspot.com/2008/08/script-fun.html">like</a> notify-send. Here is one more simple script that uses notify-send. (notify-send is the command line utility that shows pop-up message in the right hand bottom corner of desktop).<br /><br /><pre># cat runmon<br /><br />!/bin/bash<br /><br />COMMAND="$*"<br /><br />eval "$COMMAND"<br /><br />if [ $? -eq 0 ]<br />then<br />   notify-send -t 0 -u normal "$COMMAND Done!"<br />else<br />   notify-send -t 0 -u critical "$COMMAND Failed!"<br />fi<br /></pre><br />Use it like this:<br /><pre><br /># runmon make all<br /><br /># runmon cdrecord -v speed=2 dev=2,0 cdimage.raw<br /><br /># runmon wget http://download.fedoraproject.org/.../Fedora-9-x86_64-DVD.iso<br /></pre><br />It is useful for monitoring the tasks that take long time. Like build of entire product or burning of a CD. When I leave something to build and get to <a href="http://xkcd.com/303/">other work</a>, I would like to be notified when it's done - even if it is running in some background screen session.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>LiloMan</div>
+<div class='content'>
+cool baby. :)</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+great snippit</div>
+</div>
+</div>

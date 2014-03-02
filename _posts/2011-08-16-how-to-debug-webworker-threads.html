@@ -1,0 +1,36 @@
+---
+layout: post
+title: "How to debug WebWorker threads?"
+date: 2011-08-16
+comments: false
+categories:
+ - javascript
+ - multithreading
+ - debugging
+---
+
+<div class='post'>
+WebWorkers offer your Web app a way to do multithreading. If your advanced web app does some number crunching keeping the CPU busy for a while, then it makes sense to do it in a separate thread instead of doing it in the main thread, which may lead to blocking the browser tab (Chrome) or the entire browser (Firefox and others). One of the troubles of writing programs in WebWorkers is, they are hard to debug. Two key mechanisms required for debugging a program are not available in WebWorkers - print statements (console.log is not available) and breakpoints (even if you manage to place breakpoints in the code running in WebWorker, they won't be hit).<br /><div><br /></div><div>During my work on <a href="http://www.3dtin.com/">3DTin</a>, I have learnt couple of techniques that help me debug my WebWorker code.</div><div><br /></div><div><b>1. Use postMessage as replacement for console.log</b></div><div>postMessage is how you send some data from the WebWorker thread to the main thread. This is the primary way of returning the result of the computation you perform in WebWorker. But we can use it for other purposes too. Here is how you can use the postMessage mechanism for communicating both the successful response as well as debug messages.</div><script src="https://gist.github.com/1149347.js?file=webworker-debug.js"></script><br /><div><br /><b>2. Catch exceptions and send their stack trace over postMessage</b></div><div>When an exception occurs in the code running in WebWorker, the debugger will print the line at which exception&nbsp;occurred, but not the entire stack trace. In most cases the whole stack trace can help you find the root cause quickly. To achieve that, place most of your code that runs in the WebWorker inside a try-catch statement. Then in the catch clause extract the stack trace of the exception, format it nicely and send it to the main thread using postMessage, as discussed in the first technique above. Here is the exception handling code that helps you extract stack trace at least on Google Chrome and other Webkit browsers. I have cherry-picked it from the <a href="http://stacktracejs.com/">stacktrace.js</a> library. If you need a browser agnostic solution, paste the stacktrace.js library at the beginning of your WebWorker code.</div><script src="https://gist.github.com/1149363.js?file=webworker-stacktrace.js"></script><br /><div><br /></div><div>I hope this makes your life easy while debugging WebWorker code.</div></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+You are right. Fixing it now. Thanks.</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Did you really mean to link to http://stacktracejs.org/ ? - What about http://stacktracejs.com/ instead.</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Did you really mean to link to http://stacktracejs.org/ ? - What about: http://stacktracejs.com/</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Thanks for this,just clocked that your link to stacktrace.js is wrong, it takes you to a coach company. should be , <a href="http://stacktracejs.com/" rel="nofollow">http://stacktracejs.com/</a></div>
+</div>
+</div>

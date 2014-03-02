@@ -1,0 +1,32 @@
+---
+layout: post
+title: "Fedora 10 on MacBook 2,1"
+date: 2008-12-02
+comments: false
+categories:
+ - linux
+ - fedora
+ - macbook
+ - apple
+---
+
+<div class='post'>
+I finally got Linux working on my <span class="blsp-spelling-error" id="SPELLING_ERROR_0">Macbook</span>. Although, I had bought this <span class="blsp-spelling-error" id="SPELLING_ERROR_1">Macbook</span> in Dec'06, after confirming that Linux can be installed on it; I never felt any need to do so. My desktop was sufficient for the task. But soon I will be getting rid of my desktop, so have to prepare the <span class="blsp-spelling-error" id="SPELLING_ERROR_2">Macbook</span> as a primary coding machine.<br /><br />It is pretty easy, to install Linux alongside Mac OS X, provided you are ready to completely format the hard drive. I attempted to salvage my original installation of Mac OS X, by resizing the <span class="blsp-spelling-error" id="SPELLING_ERROR_3">HFS</span> volume with parted; however that didn't work. I had taken backup of all the necessary data (hopefully!!).<br /><br />Here is the <span class="blsp-spelling-corrected" id="SPELLING_ERROR_4">recipe</span> for converting a 2<span class="blsp-spelling-error" id="SPELLING_ERROR_5">nd</span> generation <span class="blsp-spelling-error" id="SPELLING_ERROR_6">MacBook</span> with Intel Core 2 duo, into a dual boot box. Since <span class="blsp-spelling-error" id="SPELLING_ERROR_7">Bootcamp</span> has expired on Mac OS X Tiger, I couldn't use it; so this one uses <span class="blsp-spelling-error" id="SPELLING_ERROR_8">rEFIt</span> and OS X's Disk Utility for repartitioning.<br /><br />1. Download <span class="blsp-spelling-error" id="SPELLING_ERROR_9">rEFIt</span> and install it.<br />2. Reboot and see that you can boot into Mac OS X<br />3. Reboot with Mac OS X install CD. During installation, use the "Disk Utility" to partition your entire hard drive into three volumes. My layout - 30GB <span class="blsp-spelling-error" id="SPELLING_ERROR_10">Journaled</span> <span class="blsp-spelling-error" id="SPELLING_ERROR_11">HFS</span> for Mac OS X, 40 GB for <span class="blsp-spelling-error" id="SPELLING_ERROR_12">linux</span> (type doesn't matter, we will change it later anyway), and 4GB for <span class="blsp-spelling-error" id="SPELLING_ERROR_13">linux</span> swap.<br />4. Continue with Mac OS X installation (this takes <span class="blsp-spelling-error" id="SPELLING_ERROR_14">looooong</span> time)<br />5. Reboot into newly installed Mac OS X<br />6. Reboot with Fedora 10 (or other <span class="blsp-spelling-error" id="SPELLING_ERROR_15">distro's</span>) installer Live CD.<br />7. Install Fedora 10 as you normally would - I chose the disks with root partition on 40GB volume (mark it to format to ext3) and 4GB swap. Also note that, you should install the <span class="blsp-spelling-error" id="SPELLING_ERROR_16">bootloader</span> on first sector of the partition (In my case it was /<span class="blsp-spelling-error" id="SPELLING_ERROR_17">dev</span>/<span class="blsp-spelling-error" id="SPELLING_ERROR_18">sda</span>3) and NOT the <span class="blsp-spelling-error" id="SPELLING_ERROR_19">MBR</span>.<br />8. After installation is complete, reboot.<br />9. In <span class="blsp-spelling-error" id="SPELLING_ERROR_20">rEFIt</span> menu you should see the <span class="blsp-spelling-error" id="SPELLING_ERROR_21">Penguine</span> alongside Mac OS X.<br /><br />There are several tutorials that tell additional steps; but above steps worked for me.<br /><br />I was happy to find many things working out of the box: <span class="blsp-spelling-error" id="SPELLING_ERROR_22">Wifi</span>, sound, Battery meter in tray. (Note that 2<span class="blsp-spelling-error" id="SPELLING_ERROR_23">nd</span> gen <span class="blsp-spelling-error" id="SPELLING_ERROR_24">Macbook</span> doesn't have <span class="blsp-spelling-error" id="SPELLING_ERROR_25">nVidia</span> card, so don't go installing <span class="blsp-spelling-error" id="SPELLING_ERROR_26">kmod</span>-<span class="blsp-spelling-error" id="SPELLING_ERROR_27">nvidia</span> packages like mentioned at many places for newer Macs)<br /><br />There are several things that still need some investigation - right click, scroll gestures on touch pad. I have yet to test suspend and resume.<br /><br />But overall the system looks good (writing from the same). I am excited to try out <span class="blsp-spelling-error" id="SPELLING_ERROR_28">KVM</span> virtual machines for the first time - because this is only the first personal machine I have got with hardware support for <span class="blsp-spelling-error" id="SPELLING_ERROR_29">virtualization</span>.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+(above poster)<BR/>forgot to mention this: http://www.cenolan.com/2008/11/installing-fedora-10-macbook/<BR/><BR/>check out the post installation stuff for trackpad support and apple smc</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+So what about getting the desktop effects to run with the graphics card on my macbook? I've been trying to google it, but haven't turned up any solid advice for it. I'm going to get a fresh install, then update my system, restart, repeat until nothing comes up, and see if that does it... but I doubt it. Any suggestions?</div>
+</div>
+<div class='comment'>
+<div class='author'>Macbook</div>
+<div class='content'>
+Thanks for the heads up. This is really good.</div>
+</div>
+</div>

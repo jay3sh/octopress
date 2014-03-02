@@ -1,0 +1,54 @@
+---
+layout: post
+title: "Inkface - SVG based GUI design"
+date: 2008-09-07
+comments: false
+categories:
+ - n810
+ - mobile
+ - svg
+ - inkscape
+ - GUI
+ - maemo
+---
+
+<div class='post'>
+I have always wondered why are there so many advanced technologies to learn to create the GUI for a software application. GUI is what we see, then if we want to design or customize it, then it should be as simple as editing an image in an Image editor. This becomes more important with the next-gen handheld devices, where the GUIs will be handled more intuitively - by fingers - rather than keyboards or mice. However the problem and its solution wasn't very apparent to me.<br /><br />... until I read this <a href="http://lists.o-hand.com/clutter/1375.html">post</a> by Andre Schmidt on Clutter mailing list few months back. In his <a href="http://osku.de/simsui/">simsui</a> project, he has designed a slider widget from an SVG image and used clutter to render its differnt parts. This little project defined the problem and solution I was looking for. I played with the simsui source code. Unfortunately, that code is written for very specific widget and had some duplicate implementation of some rendering logic.<br /><br />So I decided to give a try to a generic SVG (vector graphics) based GUI framework. I looked for open source SVG rendering libraries. I chose librsvg (which is now part of the Gnome desktop) for this purpose. It took me a month to understand its internals and to extend them to fulfill my needs. I eventually got it working. I now have created a fork of that library - dubbed 'libaltsvg' - under my altcanvas project.<br /><br />What I have achieved so far is complete isolation of GUI from the application logic code. I have coded two samples apps - A music player and A virtual keyboard for handhelds - using this new GUI framework. As you can see in the following demo video, the GUI look-n-fill can be changed by merely changing the input SVG filename. In this framework the app logic gets simplified as well. The code for the two apps can be found in <a href="http://code.google.com/p/altcanvas/source/browse/trunk/libaltsvg/player.c?r=551">player.c</a> and <a href="http://code.google.com/p/altcanvas/source/browse/trunk/libaltsvg/keyboard.c?r=554">keyboard.c</a>.<br /><br /><a href="http://blip.tv/file/1299872"><br />high-res version on Blip.tv</a><br /><br /><object height="344" width="425"><param name="movie" value="http://www.youtube.com/v/HPVaMBqdXTI&amp;hl=en&amp;fs=1"><param name="allowFullScreen" value="true"><embed src="http://www.youtube.com/v/HPVaMBqdXTI&amp;hl=en&amp;fs=1" type="application/x-shockwave-flash" allowfullscreen="true" height="344" width="425"></embed></object><br /><br /><br />The complete source code can be found <a href="http://code.google.com/p/altcanvas/source/browse/trunk/libaltsvg/">here</a> in altcanvas repository.<br /><br />The demo above is prepared on my desktop, however I have tested these on my n810 as well. Of course, the animation effects are too much for it to handle. But it works decent at minimum frame rates. I will post packages for n810 diablo in next couple of days.<br /><br />To put this in perspective: this framework lets you do on your desktop/mobile, what Adobe flash lets you do on the web (and on mobiles too) - with an added benefit of coding in C (and python or other popular languages, once I get their bindings ready). There are some closed source projects for doing vector graphics based GUIs for mobile devices (<a href="http://www.ikivo.com/">ikivo</a>, <a href="http://www.bitflash.com/">bitflash</a>). But I haven't found any open source initiatives so far. Let me know for sure if you have.<br /><br />If you are attending OSiM or Maemo summit next week in Berlin, then look for me. I will be happy to give a demo.<br /><br /><span style="font-weight: bold;">Update</span> (Sep 12):<br />A package for trying the Inkface demo on Nokia n810 is available now. Download the <a href="http://altcanvas.googlecode.com/files/inkface_0.0.1_armel.deb">.deb file</a>.<br /><span style="font-family:courier new;">[Note that the keyboard/music player are not fully functional apps. They are proof-of-concept apps for showing Inkface GUI framework benefits.]</span><br />I will be flying tommorrow afternoon for Germany. If any of you guys are in OSiM or Maemo summit, I will be glad to meet. After I come back from the trip, I will work on further improvements to this project. Till then... have fun!!!</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>asad_ddos</div>
+<div class='content'>
+I have been thinking about this for years. And you can see how many developers are doing this now...for an example check out: <br />http://jamesanderson613.com</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+This is pretty neat.<br /><br />The problem I tend to run into with a static file for the UI is that I always end up needing a level of flexibility that pure static images can&#39;t provide.  But if this could be combined with a mechanism for, say, runtime DOM manipulation (maybe even using JS, since SVG can embed JS, IIRC), it could be quite a powerful combination.<br /><br />Nice work!</div>
+</div>
+<div class='comment'>
+<div class='author'>Mohsin Hijazee</div>
+<div class='content'>
+Really innovative approach.<br />That&#39;s awesome. That would make possible to have skinnable apps which are mostly shown by media players, system utilities and anti virus software on Windows.<br /><br />Hats off!</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Hi Nick,<BR/><BR/>For the inkface project, there are 2 base packages - <B>libaltsvg</B> and <B>inkface-python</B>.<BR/><BR/>libaltsvg is a customized version of librsvg. The best way to build is "cd trunk/altcanvas; ./build.sh -p libaltsvg" This will build a .deb package. Ignore the player.c and keyboard.c; they are old apps, now replaced by equivalent python apps in "trunk/inkface/{tests,apps}" directories.<BR/><BR/>inkface-python is the python-bindings package. To build it you need scons installed. You need to execute "cd trunk/inkface; scons -Q python-debian". This will build the inkface-python*.deb.<BR/><BR/>Hope this helps!</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Hi, very interesting project. How do i build it, do i need to build everything under libaltcanvas? I have managed to build the libaltsvg directory but not player.c and keyboard.c can you tell me what i need to do to build these, do i need to build the inkface directory as well?? Also what is altX, do i need it?<BR/><BR/>Thanks in advance for any/all the answers recieved!<BR/><BR/>Nick</div>
+</div>
+<div class='comment'>
+<div class='author'>liquid</div>
+<div class='content'>
+Jayesh, <BR/>I believe we met at the maemo summit :)<BR/><BR/>I have just had to implement a VKB from scratch inside liqbase, and whilst I was doing it was thinking of what you suggested and remembered the quick glimpse I had of your very cool looking software.<BR/><BR/>If you are an irc user, pop into #liqbase and we can discuss some options - i think your experience in this field will help immensely.  If you don't use irc, I'm certain you can find my mail address somewhere online :)<BR/><BR/>I know we have users from many countries and keyboards need to be customizable, I don't know the first thing about this and have implemented a very simple down to earth qwerty affair.<BR/><BR/>Gary (lcuk on #maemo and #liqbase)</div>
+</div>
+<div class='comment'>
+<div class='author'>oskude</div>
+<div class='content'>
+Awesome!<BR/><BR/>exactly this is why i love FLOSS, the best environment for real innovation. gotta check your code right away! :)<BR/><BR/>ps. there's yet another same kind of project <A HREF="http://www.assembla.com/wiki/show/MadButterfly" REL="nofollow">http://www.assembla.com/wiki/show/MadButterfly</A><BR/><BR/>exactly what i was hoping for, as i'm not a good coder, i just want to use it/them ;)</div>
+</div>
+</div>

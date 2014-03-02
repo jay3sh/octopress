@@ -1,0 +1,47 @@
+---
+layout: post
+title: "Android development with Vim + Eclim"
+date: 2009-05-29
+comments: false
+categories:
+ - altcanvas
+ - vim
+ - eclipse
+ - android
+---
+
+<div class='post'>
+Let me repeat a millionth time that Vim is my favorite code editor. I however have been lured by Eclipse's glitter in the areas such as code completion, live debugging and graphic representation of various aspects of a project. But Eclipse code editor is only a bit better than Notepad, if compared to Vim. As a compromise I found the viPlugin. I used it for a while. It's not as rich as Vim, but good enough. (BTW, it is probably the first piece of software I ever paid for).<br /><br />Due to Android, I did a comeback to Java couple months ago and again struggled while making the choice between Eclipse and Vim. I chose to do all the coding in Vim eventually.<br /><br />Last week I learnt about <a href="http://eclim.sourceforge.net/index.html">Eclim</a>. The project looks so mature, I wonder why I didn't hear about it earlier. It gets the best of both worlds. It provides a script that runs eclipse in headless mode and it has Vim plugins that provide the functionality like code-completion (among others) inside the Vim editor. (There are two other scenarios as well, but I use this one, check their docs for more info).<br /><br />Here is a small guide on how to set this up for doing Android coding.<br /><br />My setup: Fedora 10 x86_64 linux, vim-enhanced-7.2.148, Eclipse SDK 3.4.2, Eclim 1.4.7, using Sun's JDK 1.6.0 (although gnu jre is installed, I avoid it by using custom JAVA_HOME).<br /><br />Install Eclipse. I download the tarball and untar it somewhere (mostly /opt).<br /><br />mkdir ~/.vim/eclim<br /><br />Download eclim from <a href="http://sourceforge.net/project/showfiles.php?group_id=145869&amp;package_id=160492">here</a>.<br /><br />One thing that annoyed me was lack of installation instructions. The project page has good overall documentation, but it doesn't mention that you need to compile and install it using ant. Thanks to this <a href="http://writequit.org/blog/?p=279">post</a>, I figured that out.<br /><br />As the post says, you need ant 1.7.1. Fedora 10 has the right version. Check what you have. I tried this incantation:<br /><br />JAVA_HOME=/usr/java/default ant -Declipse.home=/opt/eclipse -Dplugins=ant,jdt<br /><br />It failed complaining that ant didn't find org.apache.tools.ant.util.regexp.Jdk14RegexpRegexp.<br /><br />After some googling I <a href="http://www.jarfinder.com/index.php/java/info/org.apache.tools.ant.util.regexp.Jdk14RegexpRegexp">found</a> a list of jars that have this class. I downloaded the ant-nodeps-1.7.1.jar, then tried following command. It built and installed eclim successfully.<br /><br />JAVA_HOME=/usr/java/default CLASSPATH=$CLASSPATH:./ant-nodeps-1.7.1.jar ant -Declipse.home=/opt/eclipse -Dplugins=ant,jdt<br /><br />The installation deploys necessary vim scripts under ~/.vim and installs the plugins and some scripts to your eclipse installation.<br /><br />Follow Android SDK directions on how to setup eclipse environment (installation of Android plugin, etc.) and how to create a sample project. If you have created a project using activitycreator (like me), then you can still create a new project in eclipse and choose the option of creating project from "existing source".<br /><br />Now start the eclimd server (/opt/eclipse/eclimd for me). It starts listening on port 9091.<br /><br />Navigate to your project directory (which has .project file) and start Vim. Execute ":ProjectSettings", if you don't get any error, but see a new buffer with folded lines, then you have a working setup.<br /><br />To try code completion (probably the most important feature), write an incomplete pacakge name and hit "Ctrl x Ctrl u". You should see a drop-down list like this.<br /><br /><a href="http://2.bp.blogspot.com/_W6UcJjyXr24/Sh_JM6CRU5I/AAAAAAAAC28/oMAEGqUZpKA/s1600-h/eclim-demo.png" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"><img alt="" border="0" id="BLOGGER_PHOTO_ID_5341208906659091346" src="http://2.bp.blogspot.com/_W6UcJjyXr24/Sh_JM6CRU5I/AAAAAAAAC28/oMAEGqUZpKA/s400/eclim-demo.png" style="cursor: pointer; height: 207px; width: 400px;" /></a><br /><br />If you prefer to use Tab for this purpose install the <a href="http://www.vim.org/scripts/script.php?script_id=1643">supertab</a> vim plugin and copy few lines to your .vimrc from the end of this <a href="http://writequit.org/blog/?p=279">post</a>.<br /><br />These instructions should work more-or-less for other Linux installations too. For Mac OSX, see the post I have linked twice above.<br /><br />It looks like Eclim has a lot of features, I have yet to try most of them. But this clearly feels like a great addition to my toolbox.<br /><br /><i><span class="Apple-style-span" style="color: #666666;">Ads:</span></i><br />*&nbsp;<a href="http://www.amazon.com/Eclipse-Plug-ins-3rd-Eric-Clayberg/dp/0321553462?ie=UTF8&amp;tag=myfreq-20&amp;link_code=btl&amp;camp=213689&amp;creative=392969" target="_blank">Eclipse Plug-ins (3rd Edition)</a><img alt="" border="0" height="1" src="http://www.assoc-amazon.com/e/ir?t=myfreq-20&amp;l=btl&amp;camp=213689&amp;creative=392969&amp;o=1&amp;a=0321553462" style="border: none !important; margin: 0px !important; padding: 0px !important;" width="1" /><br />*&nbsp;<a href="http://www.amazon.com/Eclipse-IDE-Pocket-Guide-Burnette/dp/0596100655?ie=UTF8&amp;tag=myfreq-20&amp;link_code=btl&amp;camp=213689&amp;creative=392969" target="_blank">Eclipse IDE Pocket Guide</a><img alt="" border="0" height="1" src="http://www.assoc-amazon.com/e/ir?t=myfreq-20&amp;l=btl&amp;camp=213689&amp;creative=392969&amp;o=1&amp;a=0596100655" style="border: none !important; margin: 0px !important; padding: 0px !important;" width="1" /><br />*&nbsp;<a href="http://www.amazon.com/Hacking-Vim-personalizing-productivity-optimizations/dp/1847190936?ie=UTF8&amp;tag=myfreq-20&amp;link_code=btl&amp;camp=213689&amp;creative=392969" target="_blank">Hacking Vim: A Cookbook to get the Most out of the Latest Vim Editor: From personalizing Vim to productivity optimizations: Recipes to make life easier for experienced Vim users</a><img alt="" border="0" height="1" src="http://www.assoc-amazon.com/e/ir?t=myfreq-20&amp;l=btl&amp;camp=213689&amp;creative=392969&amp;o=1&amp;a=1847190936" style="border: none !important; margin: 0px !important; padding: 0px !important;" width="1" /></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Emery Horn</div>
+<div class='content'>
+I would strongly recommend you to use Vim plugin Eclim for Android development in Vim. I use it, and I found it extremely useful. Code autocomplete, refactoring and so on, is just awesome.</div>
+</div>
+<div class='comment'>
+<div class='author'>nancy</div>
+<div class='content'>
+Android application development has brought about change in way people have using their hand held devices. The entire system of application development has made huge impact in daily lives &amp; made our mobile phones much more than simple calling devices. These days, through various kinds of applications, they be used for just about anything from finding the closest place to eat to giving life saving treatment to neighbor in trouble.<br /><br /><br /><a href="http://www.falsafi.net" rel="nofollow">Android Game Development</a></div>
+</div>
+<div class='comment'>
+<div class='author'>Eric Van Dewoestine</div>
+<div class='content'>
+@Martin<br /><br />Do you see your project listed when you run :ProjectList?  If not then it could be that your project is located in another workspace than the one eclimd was started with (~/workspace by default).<br /><br />Feel free to send an email to the <a href="http://groups.google.com/group/eclim-user" rel="nofollow">eclim-user google group</a> for additional help on resolving this (I don&#39;t want to hijack Jayesh&#39;s blog with general eclim support).</div>
+</div>
+<div class='comment'>
+<div class='author'>Martin</div>
+<div class='content'>
+After &quot;:ProjectSettings&quot; I get this:<br /><br />Unable to determine the project. Please specify a project name or execute from a valid project directory.<br /><br />Should be a valid project, at least it is for eclipse. E.g. contains .project<br /><br />Ideas?</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Thanks Eric for the link. I recall seeing this link a week back, but yesterday I must have had my 'dumb user hat' on. I was so convinced that if "Installation" isn't part of "Documentation" immediately after "Introduction" then it won't be available anywhere. So I overlooked the "Guides" section. I will try the script next time I need to install eclim.</div>
+</div>
+<div class='comment'>
+<div class='author'>Eric Van Dewoestine</div>
+<div class='content'>
+Just and FYI, you can find the eclim install guide <A HREF="http://eclim.sourceforge.net/guides/install.html" REL="nofollow">here</A>.<br /><br />Perhaps there needs to be a more prominent link on the site.<br /><br />You should be able to use the .sh installer on linux and mac (and hopefully freebsd), which alleviates much of the manual build steps.</div>
+</div>
+</div>

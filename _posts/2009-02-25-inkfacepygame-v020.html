@@ -1,0 +1,30 @@
+---
+layout: post
+title: "Inkface+pygame v0.2.0"
+date: 2009-02-25
+comments: false
+categories:
+ - pygame
+ - svg
+ - python
+ - twitter
+ - inkface
+ - GUI
+ - maemo
+---
+
+<div class='post'>
+As per the <a href="http://jyro.blogspot.com/2009/02/planning-inkface-v02.html">plan</a> for v0.2, I am ready with a working implementation of inkface. I also made few more design decisions after my last design post. Here are the highlights:<br /><br />1. All code is in python<br />2. For X11 surfaces, pygame is used.<br /><br />I found that pygame (python bindings for SDL) is a mature library for drawing on X11 surfaces. It also has some optimizations which help in 2D animations. There is also OpenGL support, but I do not plan to use it inside inkface library. It is also well supported on Maemo.<br /><br />I have written my favorite twitter client app with the new inkface-pygame library. The following video demo shows, how I could quickly code 2D scrolling animation with the help of pygame.<br /><br /><embed src="http://blip.tv/play/Ae+kOAA" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" height="634" width="700"></embed><br /><br />The v0.2.0 is delivered as a <a href="http://altcanvas.googlecode.com/files/inkface-pygame_0.2.0.tar.gz">tarball</a>. I have also updated the <a href="http://code.google.com/p/altcanvas/wiki/InkFace">inkface wiki</a> with some getting-started tips.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Sorry, i'm not too familar with python. After installation of pygame, everything is ok.</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Hello, perhaps i'm doing something wrong, but after installation I can't run tests.<BR/>Logs:<BR/> jecl~/Develop/altcanvas/inkface-pygame  $  sudo python setup.py install<BR/>running install<BR/>running build<BR/>running build_py<BR/>running install_lib<BR/>running install_egg_info<BR/>Removing /usr/lib/python2.6/site-packages/inkface_pygame-0.2.0-py2.6.egg-info<BR/>Writing /usr/lib/python2.6/site-packages/inkface_pygame-0.2.0-py2.6.egg-info<BR/><BR/>jecl ~/Develop/altcanvas/inkface-pygame  $  cd tests<BR/><BR/>jecl ~/Develop/altcanvas/inkface-pygame/tests  $  python basic.py <BR/>Traceback (most recent call last):<BR/>  File "basic.py", line 3, in module<BR/>    from inkface.canvas import PygameFace, PygameCanvas<BR/>  File "/usr/lib/python2.6/site-packages/inkface/canvas/__init__.py", line 4, in module<BR/>    import pygame<BR/>ImportError: No module named pygame</div>
+</div>
+</div>

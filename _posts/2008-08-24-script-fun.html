@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Script fun"
+date: 2008-08-24
+comments: false
+---
+
+<div class='post'>
+If you use Gnome, then you can use this quick script for setting casual reminders from command line.<br /><pre>$ cat ~/bin/remind<br />#!/bin/bash<br /><br />msg=$1<br />shift<br />( sleep $* &amp;&amp; notify-send $msg -t 0 ) &amp;<br /></pre>Usage:<br /><pre>$ remind "Laundry done" 48m<br />$ remind "Group meeting" 1h 10m<br /></pre>At the end of time, you will see a popup with the reminder message.</div>

@@ -1,0 +1,22 @@
+---
+layout: post
+title: "How to print stack trace anywhere in Javascript"
+date: 2011-08-20
+comments: false
+categories:
+ - javascript
+ - debugging
+ - stacktrace
+---
+
+<div class='post'>
+It's well know how to print a stack trace after catching an exception/error in Javascript. But what if you are not catching anything? You see something happening at a particular line in code, but you want to know what's the code path through which the control flow reached that line when that interesting thing happened. In other words, you want to know what's the stack trace (series of function calls, starting from beginning of the program), at that particular line of code.<br /><br />It's quite easy. If you don't have an exception, create one. Then you can print the stack trace off of it. Like this (<a href="https://gist.github.com/1158940">gist</a>) ...<br /><br /><script src="https://gist.github.com/1158940.js?file=stack-trace-without-exception.js">
+ </script><br /><br /></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+You can easily get a stack trace at any time by calling console.trace() in your Javascript or in the Firebug console.<br /><br />here&#39;s a similar post: http://www.eriwen.com/javascript/js-stack-trace/ </div>
+</div>
+</div>

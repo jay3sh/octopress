@@ -1,0 +1,48 @@
+---
+layout: post
+title: "ReaderScope 1.1.1 quick-n-easy features"
+date: 2009-09-13
+comments: false
+categories:
+ - altcanvas
+ - zoom
+ - googlereader
+ - android
+ - readerscope
+---
+
+<div class='post'>
+In the last post I forgot to mention the new feature added - crash reporter. But thanks to the users who used this feature to report the crashes, I found a subtle problem. Also a couple of suggestions from comments in last post were pretty easy to implement on a Sunday afternoon. So I just released v1.1.1 with the fix for the Login crash, two features (zoom functionality, filtering read items) and a little internal optimization.<div><br /></div><div>About the crash. I believe it was seen only by G1 users who have slide-out keyboards (not necessarily though). The G1 users have to slide out the keyboard to type in the credentials. This puts the app into landscape mode. After they press the login button, the query goes over network and a rotating progress dialog is shown. Depending upon the network, this may take some time. Before the login is complete and the progress dialog is gone, if the user slides in the keyboard (which is very natural), they force the app into portrait mode. By default the android platform restarts the activity during these orientation changes. This causes the original progress dialog to not belong to the current window. So when the login response returns and the app tries to cancel the progress dialog, it crashes. The solution I have put in v1.1.1 is to override the default behavior of android and make it not to restart the app. This will not make any visible change in the user interface, except that now the app won't crash even when you slide in the keyboard very quickly.</div><div><br /></div><div>Now about the features. You will now see a filter icon on top of the list of news items (the 2nd screen). If you tap it, all your read items will get hidden. If you tap it again, they will be visible again.</div><div><br /></div>Without filter:<div><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/_W6UcJjyXr24/Sq0R1jTkmjI/AAAAAAAADY0/bCQ-0LVM8Vo/s1600-h/filter-off.png"><img style="cursor:pointer; cursor:hand;width: 327px; height: 336px;" src="http://2.bp.blogspot.com/_W6UcJjyXr24/Sq0R1jTkmjI/AAAAAAAADY0/bCQ-0LVM8Vo/s400/filter-off.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5380976741485681202" /></a><br /><br />With filter:</div><div><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_W6UcJjyXr24/Sq0R19EJkjI/AAAAAAAADY8/_6Ll_WiuoU8/s1600-h/filter-on.png"><img style="cursor:pointer; cursor:hand;width: 326px; height: 306px;" src="http://4.bp.blogspot.com/_W6UcJjyXr24/Sq0R19EJkjI/AAAAAAAADY8/_6Ll_WiuoU8/s400/filter-on.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5380976748400316978" /></a><br /><div><br /></div><div>In addition, the news item now has zoom buttons to adjust the zoom.</div><div><br /></div><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_W6UcJjyXr24/Sq0S4PUVsdI/AAAAAAAADZE/IP5UYnxK3mY/s1600-h/zoompanel.png"><img style="cursor:pointer; cursor:hand;width: 285px; height: 400px;" src="http://1.bp.blogspot.com/_W6UcJjyXr24/Sq0S4PUVsdI/AAAAAAAADZE/IP5UYnxK3mY/s400/zoompanel.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5380977887171424722" /></a><br /><br />I am not very satisfied with the icons themselves, will try to make them pretty in future release.<br /><br />So give it a shot!</div></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; Mark All as Read!<br /><br />Already on the list. Staying close with Google Reader&#39;s behavior, &quot;Mark All Read&quot; would be all (not just visible ones). Maybe a warning message will pop up before actually proceeding.</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+ok a bit more: Mark All as Read!<br />that would be cool.<br /><br />the question is:<br /><br />only the visible ones or ALL ?</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; Now I wish there was a way to make showing only unread items the default.<br /><br />I suppose I can make the filter button sticky.<br /><br />&gt; Also, old unread items should not be removed from the list like the read ones.<br /><br />Yeah, the algorithm to delete old posts and user settings to tweak that algorithm will take shape as we understand our reading habits better. Suggestions are welcome. I will be doing some improvements in coming releases.</div>
+</div>
+<div class='comment'>
+<div class='author'>Nelson Cruz</div>
+<div class='content'>
+Jayesh, thanks for the changes. :)<br /><br />Now I wish there was a way to make showing only unread items the default.<br /><br />Also, old unread items should not be removed from the list like the read ones.</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; does this version allow me to see just NEW items? <br /><br />I believe it does. By turning on the filter you can hide the read items and only see the Unread items (They are not necessarily the NEW ones; but the NEW ones will appear at the top :))</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+does this version allow me to see just NEW items? :D<br /><br />btw great work with all the new features.</div>
+</div>
+</div>

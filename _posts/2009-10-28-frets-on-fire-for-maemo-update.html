@@ -1,0 +1,37 @@
+---
+layout: post
+title: "Frets on Fire for Maemo - Update"
+date: 2009-10-28
+comments: false
+categories:
+ - n810
+ - fretsonfire
+ - maemo
+ - n900
+---
+
+<div class='post'>
+<a href="http://jyro.blogspot.com/2009/03/frets-on-fire-on-maemo-5-fremantle.html">Back in March</a>, when Fremantle SDK was released, I had ported Frets on Fire to it. Subsequent discussion made it clear that modifications were required to actually make it run on the device. I created a stripped down <a href="http://jyro.blogspot.com/2009/03/fof-pyopengl-minifof-possibly-for-n810.html">version</a> which could run without the OpenGL code. This made it suitable for n900 (and even n810). But due to lack of actual device, I couldn't test it.<br /><br />Fast forward 7 months. Now I have access to actual n900, so recently I went back to the FoF code. After couple weeks of getting re-acquainted with the code, I have it satisfactorily running on the n900.<br /><br />Frets-On-Fire code primarily has three parts -<br /><ul><li>playing the song (loading song, computing notes, etc. uses pygame for audio),<br /></li><li>showing the visuals (PyOpenGL+pygame code) and<br /></li><li>handling input.<br /></li></ul>All these components are pretty involved and hard to rewrite - especially so with the audio part (I hardly have any experience in musical notes and midi files). So my priority was to get almost all of the audio code as it is. It was easy to tweak the input code - to make it suite the n900 keyboard. I bypassed the visual part completely - replaced OpenGL with simple pygame sprites. (You may get disappointed by the stark <a href="http://3.bp.blogspot.com/_W6UcJjyXr24/Sckqgw9YOHI/AAAAAAAACxs/Mvr5Sf-M7Os/s1600-h/minifof-usage.png">looks</a>).<br /><br />I have created a project on googlecode to host the code - <span style="font-weight: bold;">maemofof</span>. It shows all the <a href="http://code.google.com/p/maemofof/source/list">changes</a> I had to make, starting from the base Frets-on-Fire code from v1.3.110.<br /><br />The next step is to package it nicely and push to extras-devel. There are few problems with packaging though.<br /><br />I couldn't get ogg files to play through pygame. I installed the ogg-support package, but for pygame/sdl to work with it, something more is required - which wouldn't install due to broken dependencies (libsdl-mixeroggwav1.2-dev). So for now I converted all ogg files to wav. But the wav files are huge (~80MB if a single song is included as sample). That makes them inconvenient to package and they also take a long time to load (~90 seconds).<br /><br />But good news is, the ball got rolling again. I hope to make some progress in coming days. If you have any suggestions, feel free to chime in comments.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; Has there been any progress since October?<br /><br />Sadly no. The modified lite version runs satisfactorily on n900 - the catch is I did it by converting all sound files to .wav format. I assumed it will be trivial to somehow get .ogg files running through SDL later on. But that turned out to be wrong. Check out the discussion on this bug:<br /><br />https://bugs.maemo.org/show_bug.cgi?id=176#c131<br /><br />AFAIU after many requests ogg is now playable on maemo. However, it&#39;s still not playable through SDL - at least not through the SDL library that ships in fremantle.<br /><br />Without Ogg, packaging of the game is impractical. The .wav files are huge in size (IIRC total size of minimum required files exceeds 50MB at least).<br /><br />Maemo lacks SDL+OpenGL support, so I worked around that and created graphically lite version. However my coding experience with linux audio and codec has been a failure  mostly. So I don&#39;t know how to deal with this lack of SDL+Ogg support.<br /><br />As I mentioned in the blog post, the working version is available in the googlecode project I&#39;ve setup. I will be glad to accept patches.</div>
+</div>
+<div class='comment'>
+<div class='author'>Omer</div>
+<div class='content'>
+Hi!<br />Thank you for your hard work!<br /><br />Has there been any progress since October?</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Thank for the info.<br /><br />&gt;libsdl-mixeroggwav1.2-dev is not broken, it&#39;s just not meant for what you were trying to achieve.<br /><br />I didn&#39;t say it&#39;s broken. I said it has broken dependencies. I get errors in apt-get install. <br /><br />&gt; You would need sdl and pygame compiled with ogg support, but it&#39;s not going to happen with Nokia supplied sdl.<br /><br />That&#39;s like good news and bad news. Let me see if building my own sdl/pygame with ogg support is a feasible solution or not.</div>
+</div>
+<div class='comment'>
+<div class='author'>Mikko</div>
+<div class='content'>
+libsdl-mixeroggwav1.2-dev is not broken, it&#39;s just not meant for what you were trying to achieve.<br /><br />You would need sdl and pygame compiled with ogg support, but it&#39;s not going to happen with Nokia supplied sdl.</div>
+</div>
+</div>

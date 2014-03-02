@@ -1,0 +1,16 @@
+---
+layout: post
+title: "Inkface v0.1"
+date: 2008-10-13
+comments: false
+categories:
+ - altcanvas
+ - svg
+ - inkscape
+ - demo
+ - python
+ - GUI
+---
+
+<div class='post'>
+After spending about a month on bug fixes and writing python bindings, Inkface v0.1 is ready. Check out the video that demonstrates two applications written in Inkface framework. The video also shows how the GUI is designed in Inkscape and how to get the app running with few lines of python code.<br /><br /><embed src="http://blip.tv/play/AdOTMgA" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="720" height="510"></embed><br /><br />If you want to try these applications yourself:<br /><ul><li>Install the .deb packages (<a href="http://altcanvas.googlecode.com/files/libaltsvg_0.1.0_armel.deb">libaltsvg</a>, <a href="http://altcanvas.googlecode.com/files/inkface-python_0.1.0_armel.deb">inkface-python</a>)</li><li>Download python scripts and GUI SVG images: Keyboard (<a href="http://altcanvas.googlecode.com/svn-history/r635/trunk/inkface/tests/inkface-keyboard.py">.py</a> <a href="http://altcanvas.googlecode.com/svn-history/r635/trunk/inkface/tests/data/keyboard-entry.svg">.svg</a>) IRC (<a href="http://altcanvas.googlecode.com/svn-history/r635/trunk/inkface/tests/inkface-irc.py">.py</a> <a href="http://altcanvas.googlecode.com/svn-history/r635/trunk/inkface/tests/data/irc.svg">.svg</a>)<br /></li></ul><pre># Install Inkface libraries<br />dpkg -i libaltsvg_0.1.0_armel.deb inkface-python_0.1.0_armel.deb<br /><br /># Keyboard demo<br />python inkface-keyboard.py keyboard-entry.svg<br /><br /># IRC demo<br />python inkface-irc.py irc.svg<br /></pre><br />Check out the <a href="http://code.google.com/p/altcanvas/wiki/InkFace">project wiki</a> for future plans of the project. It has some notes to get you started. A look into simple python scripts mentioned above will also help.<br /><br />Here is my last month's <a href="http://jyro.blogspot.com/2008/09/inkface-svg-based-gui-design.html">post</a> that discusses the idea behind the project.</div>

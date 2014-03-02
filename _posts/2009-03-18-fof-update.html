@@ -1,0 +1,27 @@
+---
+layout: post
+title: "FoF update"
+date: 2009-03-18
+comments: false
+categories:
+ - altcanvas
+ - inkface
+ - fretsonfire
+ - maemo
+---
+
+<div class='post'>
+After the Frets-on-Fire-on-Fremantle post, the feasibility of it on real actual hardware was discussed on <a href="http://www.gossamer-threads.com/lists/maemo/developers/46442?page=last">maemo mailing list</a> and in comments. It became clear that it's not sufficient to get FoF running in SDK to prove that it will also run on final hardware. We will have to work on the OpenGL GUI to make it happen.<br /><br />So I dived into the internals of FoF. And this is what I've come up with so far. (Click on image for detailed view)<br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_W6UcJjyXr24/ScHVtq0zgCI/AAAAAAAACwo/2c5Rs8LRtks/s1600-h/fof-arch-2.jpeg"><img style="cursor: pointer; width: 267px; height: 400px;" src="http://1.bp.blogspot.com/_W6UcJjyXr24/ScHVtq0zgCI/AAAAAAAACwo/2c5Rs8LRtks/s400/fof-arch-2.jpeg" alt="" id="BLOGGER_PHOTO_ID_5314764015840493602" border="0" /></a><br /><br />It is far from a formal UML diagram, but it tries to capture the elaborate architecture of FoF code.<br /><br />I am experimenting with some parts of the above diagram. Let's see how it goes.<br /><br />That's all for now... BTW, I posted <a href="http://code.google.com/p/altcanvas/wiki/InkFace">inkface</a> v0.2.3 yesterday (highlights - all tests running in Diablo SDK, basic Clutter support). Check the detailed changelog <a href="http://groups.google.com/group/inkface/browse_thread/thread/a87c068fc7087787">here</a>.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Thanks Sami. So far the FoF architecture looks extendable. I am working on something to find if that approach is feasible. I will update as I gain more confidence.</div>
+</div>
+<div class='comment'>
+<div class='author'>Sami Kyöstilä</div>
+<div class='content'>
+If you need some help with this, please let me know.</div>
+</div>
+</div>

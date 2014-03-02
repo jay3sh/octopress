@@ -1,0 +1,9 @@
+---
+layout: post
+title: "warning: const is a keyword in ANSI C"
+date: 2005-03-22
+comments: false
+---
+
+<div class='post'>
+While moving to compiler on Solaris machine if you encounter this warning<br /><br />"<code>warning: const is a keyword in ANSI C"<br /><br /></code>Check you this site:<br />http://www.fftw.org/faq/section2.html<br /><br />" You should be aware that Solaris comes with two compilers, namely, <code>/opt/SUNWspro/SC4.2/bin/cc</code> and <code>/usr/ucb/cc</code>.  The latter compiler is non-ANSI.  Indeed, it is a perverse shell script that calls the real compiler in non-ANSI mode.  In order to compile FFTW, change your path so that the right <code>cc</code> is used."</div>

@@ -1,0 +1,44 @@
+---
+layout: post
+title: "make problem solved"
+date: 2005-01-09
+comments: false
+---
+
+<div class='post'>
+I was stupidly wondering why won't my /usr/bin/make won't work. Posted many emails in past 3-4 days and ultimately it took installation of make_3.80-9_hurd-i386.deb to make the 'make' utility work. The original make binary was just corrupt i guess.
+<br />
+<br />No luck with Xfree86 installation dependencies, no progress with setting up network access.
+<br />
+<br />One more useful thing I learnt yesterday. How to get your IP address, Gateway and Network mask. These three are needed to setup network with pfinet in HURD.
+<br />
+<br />In linux use,
+<br />
+<br />[root@localhost jayesh]# netstat -rn
+<br />Kernel IP routing table
+<br />Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+<br />192.168.2.0     0.0.0.0         255.255.255.0   U         0 0          0 eth0
+<br />169.254.0.0     0.0.0.0         255.255.0.0     U         0 0          0 eth0
+<br />127.0.0.0       0.0.0.0         255.0.0.0       U         0 0          0 lo
+<br />0.0.0.0         192.168.2.1     0.0.0.0         UG        0 0          0 eth0
+<br />
+<br />[root@localhost jayesh]# /sbin/ifconfig -a
+<br />eth0      Link encap:Ethernet  HWaddr 00:0B:DB:DA:D6:42
+<br />          inet addr:192.168.2.10  Bcast:192.168.2.255  Mask:255.255.255.0
+<br />          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+<br />          RX packets:827 errors:0 dropped:0 overruns:0 frame:0
+<br />          TX packets:863 errors:0 dropped:0 overruns:0 carrier:0
+<br />          collisions:0 txqueuelen:100
+<br />          RX bytes:428907 (418.8 Kb)  TX bytes:124307 (121.3 Kb)
+<br />          Interrupt:11
+<br />
+<br />lo        Link encap:Local Loopback
+<br />          inet addr:127.0.0.1  Mask:255.0.0.0
+<br />          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+<br />          RX packets:5107 errors:0 dropped:0 overruns:0 frame:0
+<br />          TX packets:5107 errors:0 dropped:0 overruns:0 carrier:0
+<br />          collisions:0 txqueuelen:0
+<br />          RX bytes:348486 (340.3 Kb)  TX bytes:348486 (340.3 Kb)
+<br />
+<br />One irritating catch for less-informed like me is, ifconfig was found in /sbin and it wasn't in my PATH, so that command won't execute by default. So if you get 'No such file found' complaint from your shell when google says it should work, try looking in your /sbin, /usr/sbin directories, ones that are not in your PATH
+<br /></div>
