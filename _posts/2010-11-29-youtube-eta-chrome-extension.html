@@ -1,0 +1,49 @@
+---
+layout: post
+title: "Youtube ETA - Chrome extension"
+date: 2010-11-29
+comments: false
+categories:
+ - extension
+ - chromeos
+ - chrome
+ - google
+ - youtube
+ - browser
+---
+
+<div class='post'>
+If you have ever tried to watch a youtube video on a slow network connection, you will know the frustration I often face. Wondering when that red progress bar will reach its end. Thanks to a chrome extension like <a href="https://chrome.google.com/extensions/detail/lgdfnbpkmkkdhgidgcpdkgpdlfjcgnnh">Stop Autoplay</a>, I can let the youtube video open in background tab and let it buffer as I browse other webpages. But still I have to go back to the youtube video's tab to find out if the video is downloaded, can I start watching it?<div><br /></div><div>So I always wished someone had written an extension which will do something about this problem. After going through 3-4 pages of search results on chrome extension website with the query 'Youtube', I figured no such extension exists. This weekend, the itch became unbearable. So I peeked into the Stop Autoplay's short code and with some searching found out there exists a <a href="http://code.google.com/apis/youtube/js_api_reference.html">Javascript API</a> to control the youtube player's behavior. It provided the API calls that were sufficient for me to calculate the speed (in bytes-per-sec) at which youtube video is downloading. Combine that with total size and total duration of the video and I had the solution I was looking for.</div><div><br /></div><div>So I decided to write an extension out of it. You can get it from <a href="https://chrome.google.com/extensions/detail/dihdfccldmpeiacniemennlegenkkhnh">here</a>.&nbsp;</div><div style="text-align: right;"><a href="http://1.bp.blogspot.com/_W6UcJjyXr24/TPSQNvj3JNI/AAAAAAAADrY/tnEw15IlICo/s1600/icon128.png" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" src="http://1.bp.blogspot.com/_W6UcJjyXr24/TPSQNvj3JNI/AAAAAAAADrY/tnEw15IlICo/s1600/icon128.png" /></a></div><div><br /></div><div>It does following things:</div><div><ol><li>Pauses the video at the start, i.e. disables the autoplay</li><li>It calculates an estimated time it would take to download the video completely. Shows it in a red box in the top left corner.</li><li>It also prepends a short version of this estimated time to the title of page. So even if you are browsing in other tabs or windows, you can tell how much longer it is going to take, without visiting the youtube page.</li><li>There is an instant of time, when the video is not yet downloaded completely, but if you start watching the video after that point, you can be assured that the entire video will be downloaded by the time you reach the end. That way it is guaranteed that you won't have any interruption while watching the video. The extension smartly calculates that instant and informs you by turning the red box into orange. It also adds '*' to the timestamp in title after this point.</li></ol></div><div>Give it a shot. The extension won't yet work with HTML5 player, I will fix that soon though.</div><div><br /></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+I had remove the extension after Google took it down because of violations of their branding policies (&quot;Youtube&quot; in the name). I was planning to rebrand it, but didn&#39;t get time. The source is available here:<br /><br /><a href="https://github.com/jyro2080/youtube-eta" rel="nofollow">https://github.com/jyro2080/youtube-eta</a><br /><br />I have added support for HTML5 versions of TED and Vimeo too. Also there is support for desktop notifications.</div>
+</div>
+<div class='comment'>
+<div class='author'>--&gt; Licanueto &lt;--</div>
+<div class='content'>
+hey, what happened with one of my favourites extensions? is there any other source to download the app?</div>
+</div>
+<div class='comment'>
+<div class='author'>Magento Templates</div>
+<div class='content'>
+Surely would be a great extension of Youtube to go for and install with on the browser of Google Chrome... Well done a great post...<br /><br /><a href="http://www.fmeextensions.com/magento-themes.html" rel="nofollow">Magento Themes</a></div>
+</div>
+<div class='comment'>
+<div class='author'>Jhon</div>
+<div class='content'>
+@ Tania, you may be wasting but I think youtube is best learning resource on the Internet ever.<br /><br />- John Devis<br /><a href="http://free-magentoextensions.com/magento-themes.html" title="Magento Theme" rel="nofollow">Magento Themes</a></div>
+</div>
+<div class='comment'>
+<div class='author'>tania</div>
+<div class='content'>
+thats good but I am already wasting lot of time on youtube, now it waste time in effective way.<br /><br />- Tanya<br /><a href="http://www.unitedsol.net" title="Web Design Firm" rel="nofollow">Web Design Firm</a></div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+nice work.<br />nothing like scratching your own itches, right?<br />installing</div>
+</div>
+</div>

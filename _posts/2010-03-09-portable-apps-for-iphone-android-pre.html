@@ -1,0 +1,56 @@
+---
+layout: post
+title: "Portable apps for iPhone, Android, Pre, n900 - Can Processing.js help?"
+date: 2010-03-09
+comments: false
+categories:
+ - javascript
+ - html5
+ - pre
+ - iphone
+ - processing
+ - processingjs
+ - n900
+ - altcanvas
+ - animation
+ - magic
+ - android
+ - maemo
+ - palmpre
+---
+
+<div class='post'>
+I don't know. But if you want to find out, then I have something for you.<br /><br /><a href="http://p.altcanvas.com/">Processing.alt</a><br /><br />Visit this website from your desktop browser. You will see an IDE. Write some processing code to create a sketch and save it when you are done.<br /><br />Visit the same website from your iPhone/Android/n900/Pre browser. You will get a simple viewer interface. Find your sketch under <i>My Sketchbook</i> and run it.<br /><br /><a href="http://processing.org/">Processing</a> is a well known language to create sketches, animations, games. It is a simplified dialect of java. The resulting sketches are in the form of bytecode and can be run on desktop or in java applets. In Summer of 2008, John Resig (jQuery fame) ported Processing to javascript. <a href="http://processingjs.org/">Processing.js</a> uses the HTML5 canvas element to render the sketches.<br /><br />The modern browsers that ship with today's smart phones support HTML5 element. So it is very much plausible to get your Processing sketch/game working on all the modern smart phones without any knowledge of native app development for each platform. Processing.js has a potential to become an uber-portable library for mobile development.<br /><br />That was the idea I started out with about a month ago. After several iterations, I ended up with a website that you see now. It is an IDE when opened from desktop browser. You can write Processing code, run it, save it, share it for others to see in the Gallery. There are also some samples you can find in Gallery right now. Try them out.<br /><br />The same website acts as a viewer for your processing sketch when opened from a mobile phone. You can view the shared sketches from the <b>Gallery</b> or you can login and find your saved sketches in <b>My Sketchbook</b>.<br /><br />One great advantage of Processing.js is, it can intermix javascript with Processing code. So in the samples you will find how javascript is used to <b>automatically find &nbsp;the kind of browser and adjust the dimensions of the sketch accordingly</b>.<br /><br />I have tested the site on <i>Android HTC Magic</i> and <i>Nokia n900</i>. A friend told me it worked as expected on his <i>iPhone</i> too. Also I am treating <i>Palm Pre</i>'s user agent as mobile platform. So on these four platforms you should see the mobile interface of the website. But in case if you don't, let me know and I'll see what is wrong.<br /><br />As you will see that running Processing code on smartphones is indeed possible, but is fairly sluggish. However I believe the future is not far when the phones will become more powerful, browsers will become more optimized and Processing.js can also be tuned for speed. We already have two gadgets with 1GHz processors - Nexus One and iPad.<br /><br />The IDE also has a lot of scope for innovation. But before jumping ahead of myself, I decided to open it as beta. I would like to hear your thoughts and suggestions on this idea.<br /><br />So try it out and leave your opinion in the comments.<br /><br /><i>P.S.&nbsp;For logging in to save your sketches, use your GMail account. You don't need to login to browse through the Gallery.</i><br /><i><br /></i><br /><i><span class="Apple-style-span" style="color: #666666;">Ads:</span></i><br /><i>*&nbsp;<a href="http://www.amazon.com/Processing-Programming-Handbook-Designers-Artists/dp/0262182629?ie=UTF8&amp;tag=myfreq-20&amp;link_code=btl&amp;camp=213689&amp;creative=392969" target="_blank">Processing: A Programming Handbook for Visual Designers and Artists</a><img alt="" border="0" height="1" src="http://www.assoc-amazon.com/e/ir?t=myfreq-20&amp;l=btl&amp;camp=213689&amp;creative=392969&amp;o=1&amp;a=0262182629" style="border: none !important; margin: 0px !important; padding: 0px !important;" width="1" /></i><br /><i>*&nbsp;<a href="http://www.amazon.com/Learning-Processing-Beginners-Programming-Interaction/dp/0123736021?ie=UTF8&amp;tag=myfreq-20&amp;link_code=btl&amp;camp=213689&amp;creative=392969" target="_blank">Learning Processing: A Beginner's Guide to Programming Images, Animation, and Interaction (Morgan Kaufmann Series in Computer Graphics)</a><img alt="" border="0" height="1" src="http://www.assoc-amazon.com/e/ir?t=myfreq-20&amp;l=btl&amp;camp=213689&amp;creative=392969&amp;o=1&amp;a=0123736021" style="border: none !important; margin: 0px !important; padding: 0px !important;" width="1" /></i><br /><i>*&nbsp;<a href="http://www.amazon.com/Processing-Creative-Coding-Computational-Foundation/dp/159059617X?ie=UTF8&amp;tag=myfreq-20&amp;link_code=btl&amp;camp=213689&amp;creative=392969" target="_blank">Processing: Creative Coding and Computational Art (Foundation)</a><img alt="" border="0" height="1" src="http://www.assoc-amazon.com/e/ir?t=myfreq-20&amp;l=btl&amp;camp=213689&amp;creative=392969&amp;o=1&amp;a=159059617X" style="border: none !important; margin: 0px !important; padding: 0px !important;" width="1" /></i></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>buy viagra</div>
+<div class='content'>
+This comment has been removed by a blog administrator.</div>
+</div>
+<div class='comment'>
+<div class='author'>araon</div>
+<div class='content'>
+This comment has been removed by a blog administrator.</div>
+</div>
+<div class='comment'>
+<div class='author'>peterbouda</div>
+<div class='content'>
+This is really awesome. I once tried to use Processing to develop an Arduino board, and I liked it. This definitely has potential for mobile application programming.</div>
+</div>
+<div class='comment'>
+<div class='author'>Mike</div>
+<div class='content'>
+This comment has been removed by the author.</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Thanks Raphael.<br /><br />Yeah the behavior you described is as designed. If you want to test  larger sketch, you can click on the fullscreen button at the top right.<br /><br />I might do that automatically when the size of the sketch is bigger than the available space.<br /><br />HTH.</div>
+</div>
+<div class='comment'>
+<div class='author'>Raphael</div>
+<div class='content'>
+Absolutely awesome.<br /><br />Small bug: In Opera 10.20 with a window width of ca. 800px the canvas is rendered in the top left, obscuring the play/stop button.<br />Using a smaller canvas or wider window lets the canvas appear on the bottom right, however.</div>
+</div>
+</div>

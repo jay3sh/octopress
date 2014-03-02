@@ -1,0 +1,47 @@
+---
+layout: post
+title: "ReaderScope 1.0.2 - making deep cache simple"
+date: 2009-09-07
+comments: false
+categories:
+ - altcanvas
+ - googlereader
+ - android
+ - readerscope
+---
+
+<div class='post'>
+<div>As was rightly complained, the deep caching feature didn't seem to work in ReaderScope. It appeared so because a) If feed is not marked for periodic download, deep caching won't have any effect b) deep caching wasn't done for news items that were already downloaded. In 1.0.2 this is fixed. <div><br /></div><div>If you choose a feed for deep caching by going to Settings, it will automatically be marked as favorite (i.e. marked for periodic download). If the feed has news items already downloaded (before setting deep caching), then those news items will also be deep cached at the time of next download. I hope this will make the deep caching feature more intuitive. </div><div><br /></div><div>Note that you will be able to view the  deep cached page by clicking on the 'Open Link' action button from panel. For deep-cached news items the web page will open inside the ReaderScope itself (instead of an external browser) and this will work even when you are offline.<div><br /></div><div>Also note the performance implications of  choosing feeds for deep cache. It will make your background downloads run longer and consume more memory and network. Imagine opening 20 webpages in the web browser one after the other (this is what happens in the background). So use deep caching with discretion. </div><div><br /></div><div>Apart from this, there are few more improvements. There is a slight change/improvement in notifications. There are now three distinct icons to tell different notifications from each other.</div><div><br /></div><div><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_W6UcJjyXr24/SqU7n64mQhI/AAAAAAAADXs/yitcc5uBxkk/s1600-h/icondload.png"><img src="http://1.bp.blogspot.com/_W6UcJjyXr24/SqU7n64mQhI/AAAAAAAADXs/yitcc5uBxkk/s400/icondload.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5378770886971507218" style="float: left; margin-top: 0px; margin-right: 10px; margin-bottom: 10px; margin-left: 0px; cursor: pointer; width: 32px; height: 32px; " /></a>- This icon in the status bar will indicate that a download is in progress.</div><div>- This icon will not linger after download is complete. You will see a "Done!" ticker when download finishes and the notification will vanish. I thought having it after its job is done was unnecessary. However, I liked a suggestion that there should be a way to know when the periodic download took place. That information now will be available in the logs. Just go to Settings->Logs and at the top you will find results of latest 10 downloads.</div><div><br /></div><div><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_W6UcJjyXr24/SqU9wVmjhPI/AAAAAAAADYE/KiZEW_5txTI/s1600-h/download-log.png"><img src="http://4.bp.blogspot.com/_W6UcJjyXr24/SqU9wVmjhPI/AAAAAAAADYE/KiZEW_5txTI/s400/download-log.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5378773230605796594" style="display: block; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: auto; text-align: center; cursor: pointer; width: 291px; height: 107px; " /></a></div><div><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/_W6UcJjyXr24/SqU7orMAUzI/AAAAAAAADX8/Nw_gPvh-OxM/s1600-h/icondloaderr.png"><img src="http://2.bp.blogspot.com/_W6UcJjyXr24/SqU7orMAUzI/AAAAAAAADX8/Nw_gPvh-OxM/s400/icondloaderr.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5378770899937809202" style="float: left; margin-top: 0px; margin-right: 10px; margin-bottom: 10px; margin-left: 0px; cursor: pointer; width: 32px; height: 32px; " /></a>You will see this icon in the status bar when the periodic/manual download has failed for some reason - due to unsuitable/no network OR due to low battery, etc.</div><br /><div><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_W6UcJjyXr24/SqU7oCA8_lI/AAAAAAAADX0/fAGpNUBp8XM/s1600-h/iconupload.png"><img src="http://4.bp.blogspot.com/_W6UcJjyXr24/SqU7oCA8_lI/AAAAAAAADX0/fAGpNUBp8XM/s400/iconupload.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5378770888885599826" style="float: left; margin-top: 0px; margin-right: 10px; margin-bottom: 10px; margin-left: 0px; cursor: pointer; width: 32px; height: 32px; " /></a>You will see this icon, for the actions (star/share/unread) that you perform offline and are pending. It signifies the actions that are pending upload.</div><br /><div>In addition, the action buttons menu has been made even more non-intrusive. When you press "Menu" the actions menu shows up. Now it will get hidden when you touch the news item (you don't have to press "Menu" again).</div><div><br /></div><div>I hope you like 1.0.2. Let me know.</div></div></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; do you have a public bug tracking system were i can file future bugs?<br /><br />I have setup a Google Group for ReaderScope. We can more-or-less use it as a bug tracking mechanism too.<br /><br />http://groups.google.com/group/readerscope<br /><br />Please join!</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+eheh wouldnt u like to opensourced your project? <br />ehe</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; I&#39;ve foud another small bug: the number of unread itens is not updated on the top of each feed not in the main page.<br /><br />:Yeah, that&#39;s by design right now. I will keep it on my todo-list though.  <br /><br />&gt; May I recommend launchpad.net for a BTS?<br />: Launchpad (like many others) is targeted for open source projects. They allow closed-source projects, but that <a href="https://answers.launchpad.net/launchpad/+question/40633" rel="nofollow">costs $$ it seems</a></div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+4. Press back, back .. until you come out of app (It is necessary that the activity should be restarted for Action Controls changes to take effect)<br /><br />i didnt restart it ;)<br /><br /><br />I&#39;ve foud another small bug: the number of unread itens is not updated on the top of each feed not in the main page.<br /><br />May I recommend launchpad.net for a BTS?<br />If you need i can help you out setting it up</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+* How can I read an entire Label, inteads of each feed at a time?<br /><br />- coming soon :)<br /><br />* I&#39;ve disabled twitter/sms/etc from control panel and they still show in there<br /><br />- Strange. I assume this is what your are doing:<br /><br />1. Go to opening screen, press MENU -&gt; settings<br />2. &quot;Action Controls&quot;<br />3. Uncheck Twitter, SMS<br />4. Press back, back .. until you come out of app (It is necessary that the activity should be restarted for Action Controls changes to take effect)<br />5. After starting ReaderScope again, navigate to a new sitem, press MENU. Do you see the Twitter/SMS now?<br />6. If answer is yes to 5, then again go to Settings-&gt;Action Controls, do you see Twitter/SMS checked/unchecked?<br /><br />* do you have a public bug tracking system were i can file future bugs?<br /><br />- Not exactly. You can either comment on blogposts OR email your issues to readerscope AT altcanvas DOT com. I will reply as soon as I can.</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+Hi.<br />Just came to your app from NewsRob, and so far I love the ability to choose which labels to pull. Missed that on NR.<br /><br />I have found a few probs.<br />* How can I read an entire Label, inteads of each feed at a time?<br />* I&#39;ve disabled twitter/sms/etc from control panel and they still show in there<br /><br />do you have a public bug tracking system were i can file future bugs?<br /><br />thanks in advance</div>
+</div>
+</div>

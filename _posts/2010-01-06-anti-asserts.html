@@ -1,0 +1,25 @@
+---
+layout: post
+title: "Anti Asserts"
+date: 2010-01-06
+comments: false
+categories:
+ - c++
+ - java
+ - programming
+ - asserts
+ - c
+ - crash
+ - coding
+---
+
+<div class='post'>
+I couldn't help but make this name up after I thought about it in that sense.<br /><br />Putting <b>Asserts</b> at various points in your code is a good practice. With Asserts you express your assumptions about the state of your program at the particular point in execution. When the program runs, it verifies if your assumptions actually hold or not. Asserts are the simplest form of a test case.<br /><br />Consequently, what I call&nbsp;<b>Anti Assert</b>&nbsp;is bad. Where Assert gives you an opportunity to test your assumption at certain point in code, Anti Assert will rob you off such opportunities.<br /><br />Anti Asserts are more dangerous, because we introduce them unknowingly. Where Assert is one definite line of code, Anti Assert is essentially invisible or hidden under the guise of routine code logic.<br /><br />So what is Anti Assert?<br /><br />Simply put - it is the unnecessary checks that we put in our code, and more specifically the superfluous NULL checks.<br /><br />Why call them Anti Assert?<br /><br />This is how we use <b>assert</b>s.<br /><br /><pre><span style="color: #ff6060;">// ...</span><br /><br />TheObject obj = x.findObject();<br /><br /><span style="color: #8080ff;"><b>assert</b></span>(obj != <span style="color: lime;">null</span>);<br /><br />obj.performY();<br /><br /><span style="color: #ff6060;">// ...</span><br /><br /></pre>In the above code, if under some scenario obj turns out to be null, then we will very likely learn about it during early development/testing.<br /><br />And this is what I call <b>anti-assert</b>.<br /><br /><pre><span style="color: #ff6060;">// ...</span><br /><br />TheObject obj = x.findObject();<br /><br /><span style="color: #8080ff;"><b>if</b></span>(obj != <span style="color: lime;">null</span>) obj.performY();<br /><br /><span style="color: #ff6060;">// ...</span><br /></pre><br />In this code we not only omitted the assert, but we did a null check before calling a method on <i>obj</i>. Doing a null-check before de-referencing is considered a smart thing (especially if it is the C/C++ code), but do you realize that this only postpones the disaster?<br /><br />By doing a null check we avoided a failure while calling <i>performY</i>, but somewhere down the code path <i>obj</i> might still get dereferenced, and in worst case that will happen only on customer site.<br /><br />The&nbsp;tendency&nbsp;to put such cautionary null checks is justifiable in C/C++ code. In the native code a NULL pointer dereferencing will lead to segmentation fault, and unless it happens on a debug build the developer won't know what went wrong. So the coders working in C/C++ or having a prior background in those languages will tend to introduce Anti-Asserts.<br /><br />In Java or other managed languages, if a pointer turns out to be null, the worst that can happen is a program crash with well-defined stack trace. With <a href="http://jyro.blogspot.com/2009/09/crash-report-for-android-app.html">proper mechanisms</a>, such crash reports can be easily retrieved even from customer sites. So there is no justification for introducing Anti-asserts when coding in managed languages.<br /><br />One way to avoid introducing Anti-asserts is understanding the API contract carefully. If an API function is not supposed to return null, then we shouldn't put a check for it. That way, if it indeed returns null, it will be exposed by a crash (with some luck during early testing). Or the best practice would be to put an assert, with an arrangement to remove it from production code. This <a href="http://stackoverflow.com/questions/271526/how-to-avoid-null-statements-in-java">thread</a> on Stack overflow gives ample information on this subject.<br /><br />This is not something new, but just a re-emphasis of what we already observe but fail to recognize.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>BloggerAutoFollow.com</div>
+<div class='content'>
+nice blog!<br /><br />i found your blog through keyword &quot;auto follow&quot;.<br /><br />im following you.. pls follow me back.</div>
+</div>
+</div>

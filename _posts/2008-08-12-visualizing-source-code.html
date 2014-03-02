@@ -1,0 +1,37 @@
+---
+layout: post
+title: "Visualizing source code"
+date: 2008-08-12
+comments: false
+categories:
+ - visualization
+ - source
+ - programming
+ - c
+---
+
+<div class='post'>
+I always find it difficult to understand the legacy code after joining a new project. I cannot understand it until I can visualize it. Cscope, Ctags have been great help in this effort, but they don't present the source code structure in visual form. I tried KScope a while back, it's good. But today I got working a very useful method of visualizing the program execution. It's documented in this <a href="http://www.ibm.com/developerworks/library/l-graphvis/">article</a> on IBM Developerworks.<br /><br />If your project has a C binary, then using the pvtrace utility mentioned in the article (which uses addr2line) and graphviz, you can create awesome picture of your C source code. (I haven't tried this yet on C++). One hiccup that was keeping me from getting this to work was resolved today. I was running it on an executable that was linking to a shared library. So even though I was compiling the whole library and the executable with debug symbols, the addr2line utility couldn't get the symbols that were in the shared library. When I realized that, I re-ran the linking part of my executable, so that it would now link the .a file statically, instead of .so file dynamically. The resultant binary had all the symbols.<br /><br />After following all the steps in the article I came up with this picture.<br /><br /><div style="text-align: center;"><a href="http://picasaweb.google.com/jayeshsalvi/MyFrequency/photo?authkey=OknnHBMRY90#5233536445111736642"><img src="http://lh3.ggpht.com/jayeshsalvi/SKFBqxnyGUI/AAAAAAAABZY/EBGQJk4_ow4/s144/pvtrace-librsvg.jpeg" /></a></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+The popular Doxygen tool now does an excellent job of this as well - incidently it also uses GraphViz to achieve this. Simply run an HTML output documentation generation on your project with &#39;charts&#39; switched on, then go to the resulting index.html and you should see an option in the navigation pane called &#39;Graphical Class Hierarchy&#39; which brings up the image.</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Here is another tool I came around to do the same job.<BR/><BR/><A HREF="http://www.gson.org/egypt/" REL="nofollow">http://www.gson.org/egypt/</A><BR/><BR/>I haven't tried it yet, but the results from the site look good.</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Hi, I do have the pvtrace.zip. Unfortunately the source code doesn't have any licensing information. It won't be appropriate of me to host it for people to download, w/o the original author's consent.</div>
+</div>
+<div class='comment'>
+<div class='author'>Eko</div>
+<div class='content'>
+Do you still have pvtrace.zip ?<BR/><BR/>Original link is broken http://www.mtjones.com/developerworks/pvtrace.zip</div>
+</div>
+</div>

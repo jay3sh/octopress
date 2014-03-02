@@ -1,0 +1,36 @@
+---
+layout: post
+title: "Makeshift XML beautifier in python"
+date: 2009-08-07
+comments: false
+categories:
+ - xml
+ - python
+ - beatifier
+---
+
+<div class='post'>
+Lately I had to deal with some XML dumps. It's a pain to analyse XML if it's not properly indented. Browsers do the best job of rendering XML. Those collapsable XML elements are very handy. But they work only if the XML file is downloaded with right MIME type. That's why XML dumped to a local file and opened using a browser doesn't get the same treatment.<br /><br />I am sure there are other XML beautifiers, but I couldn't find one that will work for me. (I am sure in comments someone will post better solutions). Finally following simple python script did the trick. I found it <a href="http://mail.python.org/pipermail/python-list/1999-September/011087.html">here</a> and corrected a little to take care of &lt;/&gt; tags. It worked perfectly on many XML dumps I worked with.<br /><br /><pre><span style="color:#ff6060;">#!/usr/bin/python</span><br /><span style="color:#ff40ff;">import</span> sys<br /><span style="color:#ff40ff;">import</span> re<br /><br />data = open(sys.argv[1],<span class="c88">'</span><span style="color:#00ff00;">r</span><span class="c88">'</span>).read()<br /><br />fields = re.split(<span class="c88">'</span><span style="color:#00ff00;">(&lt;.*?&gt;)</span><span class="c88">'</span>,data)<br />level = 0<br /><span style="color:#8080ff;"><b>for</b></span> f <span style="color:#8080ff;"><b>in</b></span> fields:<br />   <span style="color:#8080ff;"><b>if</b></span> f.strip() == <span class="c88">''</span>: <span style="color:#8080ff;"><b>continue</b></span><br />   <span style="color:#8080ff;"><b>if</b></span> f[0]==<span class="c88">'</span><span style="color:#00ff00;">&lt;</span><span class="c88">'</span> <span style="color:#8080ff;"><b>and</b></span> f[1] != <span class="c88">'</span><span style="color:#00ff00;">/</span><span class="c88">'</span>:<br />       <span style="color:#8080ff;"><b>print</b></span> <span class="c88">'</span><span style="color:#00ff00;"> </span><span class="c88">'</span>*(level*4) + f<br />       level = level + 1<br />       <span style="color:#8080ff;"><b>if</b></span> f[-2:] == <span class="c88">'</span><span style="color:#00ff00;">/&gt;</span><span class="c88">'</span>:<br />           level = level - 1<br />   <span style="color:#8080ff;"><b>elif</b></span> f[:2]==<span class="c88">'</span><span style="color:#00ff00;">&lt;/</span><span class="c88">'</span>:<br />       level = level - 1<br />       <span style="color:#8080ff;"><b>print</b></span> <span class="c88">'</span><span style="color:#00ff00;"> </span><span class="c88">'</span>*(level*4) + f<br />   <span style="color:#8080ff;"><b>else</b></span>:<br />       <span style="color:#8080ff;"><b>print</b></span> <span class="c88">'</span><span style="color:#00ff00;"> </span><span class="c88">'</span>*(level*4) + f<br /></pre><br />It's all about keeping track of depth.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Very cool - I know there are more elaborate tools out there, but I needed it for just a couple files and your script is perfect.</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Thanks for the improvements.<br /><br />Over time, I found out about xmllint. It&#39;s nice little utility that can beautify XML.</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Thanks for your yousefull simple script.<br /><br />I extend it, to preserve CDATA-Section which contains HTML-Tags:<br /><br />#!c:/Pythom26/python26.exe<br /># XMLBeautifier.py<br /># Quelle: http://jyro.blogspot.com/2009/08/makeshift-xml-beautifier-in-python.html<br /># modified by Thomas Haeny (dev@haeny.de), 9.8.2010<br />import sys<br />import re<br /><br />#init&#39;s:<br />preserveCDATA = 1<br />intendCols = 4<br /><br />data = open(sys.argv[1],&#39;r&#39;).read()<br /><br />fields = re.split(&#39;(&lt;.*?&gt;)&#39;,data)<br />level = 0<br />cdataFlag=0<br /><br />for f in fields:<br />   if f.strip() == &#39;&#39;: continue<br />   <br />   if preserveCDATA :<br />    # rejoin splitted CDATA-Tags which contains HTML-Tags<br />    if f[:8] == &#39;&#39; :<br />      cdataFlag=0<br />      print &#39; &#39;*(level*intendCols) + cdata<br />     continue<br />   <br />   if f[0]==&#39;&lt;&#39; and f[1] != &#39;/&#39; and f[1] != &#39;!&#39; :<br />       print &#39; &#39;*(level*intendCols) + f<br />       level = level + 1<br />       if f[-2:] == &#39;/&gt;&#39;:<br />           level = level - 1<br /><br />   elif f[:2]==&#39;&lt;/&#39;:<br />       level = level - 1<br />       print &#39; &#39;*(level*intendCols) + f<br /><br />   else:<br />       print &#39; &#39;*(level*intendCols) + f<br /><br />You can decide to publish it or not.</div>
+</div>
+<div class='comment'>
+<div class='author'>Steve Taylor</div>
+<div class='content'>
+Thanks! This works great.</div>
+</div>
+</div>

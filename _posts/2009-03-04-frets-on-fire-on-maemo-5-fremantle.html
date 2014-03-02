@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Frets on Fire on Maemo 5 (Fremantle)"
+date: 2009-03-04
+comments: false
+categories:
+ - pygame
+ - guitar
+ - music
+ - opengl
+ - fretsonfire
+ - maemo
+ - game
+---
+
+<div class='post'>
+Couple days ago I played Frets on Fire (<a href="http://fretsonfire.sourceforge.net/">FoF</a>) for the first time. I was totally hooked on to it. After going through its hilarious tutorial and starting with a pathetic performance, I managed to score 37K points with 87% accuracy on the "Defy the Machine" song a few moments ago.<br /><br />Couple days ago Nokia released the alpha version of Maemo 5 SDK (Fremantle) too.<br /><br />I woke up next morning with an inevitable thought of porting the former on the later.<br /><br />After a day's work here is a video demo of "Frets on Fire" running in the Maemo scratchbox SDK. And find below a list of things I had to do to get it working.<br /><br />[If you don't know about FoF, it's an open source Guitar Hero clone that runs on many desktop platforms. It is written completely in python. While playing it you hold your keyboard in an unusual fashion so that it simulates a rockstar's guitar. (<a href="http://en.wikipedia.org/wiki/Frets_on_fire">wikipedia</a>)]<br /><br /><embed src="http://blip.tv/play/AfDxMwA" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" height="430" width="624"></embed><br /><br />In future we can tweak FoF's UI so that the strings could be pressed against the frets using the touch screen itself.<br /><br />There is no sound in the video, but it's just because I couldn't channel the sound through two layers of virtualization and into the video recorder software. I could hear the songs alright though after transporting them over wire using pulseaudio.<br /><br />[Note that scratchbox is running on Ubuntu which itself is a KVM virtual machine. That should put the poor framerate into perspective.]<br /><br />Here are the things I had to do:<br /><ul><li>Fremantle SDK doesn't have python distutils. In diablo it comes from extras repo, so I borrowed it from there as well. (Added diablo extras repo in /etc/apt/sources.list)<br /></li><li>Fremantle SDK has a bug that I had <a href="http://www.gossamer-threads.com/lists/maemo/developers/44229#44229">discussed</a> on mailing list during pre-alpha release, due to which the SDL/pygame applications cannot use the OpenGL support of the SDK. Due to same bug, FoF would also not work. After some <a href="http://www.phoronix.com/forums/showthread.php?s=31dca4fc1886adfbaad91f0e4a83f288&amp;t=11060&amp;page=2">googling</a> I figured out the root cause and a work around. I built a private version of libsdl with --enable-video-opengl option. That did the trick. I have filed a <a href="https://bugs.maemo.org/show_bug.cgi?id=4177">bug</a> to get this fixed in Fremantle.</li><li>I also had to build custom packages of PIL (python imaging library) and numpy. I believe these libraries are available in diablo through extras repository, so I guess they will also be available in fremantle in future.<br /></li><li>Next I had to modify src/Input.py to comment out pygame's joystick initialization code.</li><li>The really tough part was getting sound working. I found an old <a href="http://blogs.igalia.com/jasuarez/2008/05/02/ubuntu-and-scratchbox-singing-duets/">post</a> to get sound working in scratchbox. Although it was a correct procedure, it didn't work for me. After a while I remembered from the Maemo summit that Fremantle runs pulseaudio (as opposed to esound in diablo). After that I did some googling and figured how to transport the sound over network using pulseaudio server and client. Here are couple useful links. <a href="http://blog.paulbetts.org/index.php/2007/04/15/pulseaudio-in-ubuntu-feisty-play-sound-over-the-network/">[1]</a> <a href="http://pulseaudio.org/wiki/PerfectSetup">[2]</a></li><li>The job on sound wasn't over yet. FoF runs all its music from ogg files. pygame won't play ogg files on fremantle. I dabbled into recompiling SDL_mixer with ogg support, but that didn't help. Then another discussion from Maemo summit came to mind, and I remembered for some (non-technical ?!) reason Maemo doesn't play ogg. So to get around it, I converted all .ogg files into .wav using ffmpeg. Changed the code wherever necessary to replace the file name extensions from ogg to wav. That did the trick and finally I could hear the sound.</li><li>The game by default used 600x480 resolution. After some analysis of the code, I found fretsonfire.ini file in my home directory. I changed it to set the resolution to 800x480 to fit into the Xephyr window.</li><li>There is one thing that I couldn't get to work. Arrow keys won't work. I found that the scan codes sent through Xephyr to the pygame were different from what are put in pygame constants.<br /></li></ul><br />... so when Nokia releases that next device, we will have an electric guitar in our pocket. :)</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>olocart</div>
+<div class='content'>
+nice post.. thanks..</div>
+</div>
+<div class='comment'>
+<div class='author'>Mobile Game Development</div>
+<div class='content'>
+This comment has been removed by a blog administrator.</div>
+</div>
+<div class='comment'>
+<div class='author'>the</div>
+<div class='content'>
+This comment has been removed by a blog administrator.</div>
+</div>
+<div class='comment'>
+<div class='author'>web design company</div>
+<div class='content'>
+cool post</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+I also found out about FoFix only today. I will try it out. Thanks.</div>
+</div>
+<div class='comment'>
+<div class='author'>Lysdestic</div>
+<div class='content'>
+You should check out FoFiX -- it's a fork of FoF, and in my opinion, much more stable/smooth, etc.<BR/><BR/>Anyway, nice job on this.</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+@sorek<BR/>Quim Gil as stated that the lack of Ogg Vorbis support in Maemo is due to "business reasons" rather than patent issues. <BR/><BR/>See the long discussion here:<BR/><A HREF="https://bugs.maemo.org/show_bug.cgi?id=176" REL="nofollow">Bug 176 - Ogg Vorbis support</A><BR/><BR/>(and vote for the bug while you're at it)</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; Would fof be unplayable in diablo on the N8xx devices?<BR/><BR/>FoF won&#39;t work out-of-the-box on n810. Only if we can separate the OpenGL GUI and replace it with X11 pygame, then we have hope.<BR/><BR/>I will look into the feasibility of this. This might be a good project to put the <A HREF="http://code.google.com/p/altcanvas/wiki/InkFace" REL="nofollow">inkface-pygame</A> library to use.</div>
+</div>
+<div class='comment'>
+<div class='author'>Christopher Bermingham</div>
+<div class='content'>
+Would fof be unplayable in diablo on the N8xx devices?</div>
+</div>
+<div class='comment'>
+<div class='author'>timsamoff</div>
+<div class='content'>
+Great work! I'm looking forward to trying it. :)</div>
+</div>
+<div class='comment'>
+<div class='author'>tom2</div>
+<div class='content'>
+Absolutely fantastic, great port!</div>
+</div>
+<div class='comment'>
+<div class='author'>sorek</div>
+<div class='content'>
+Sweet. By the way ogg files can be played in diablo by installing "ogg-support" located in extras. I'm not sure if that can be used in freemantle. The reason Nokia doesn't enable it by default is that it is an open source format that they *believe* is based on patented intellectual property. Many people disagree and believe that the pantents are so vague as to include mp3, which is included by default in diablo and presumably in freemantle as well.</div>
+</div>
+</div>

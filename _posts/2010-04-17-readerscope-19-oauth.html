@@ -1,0 +1,81 @@
+---
+layout: post
+title: "ReaderScope 1.9 - OAuth"
+date: 2010-04-17
+comments: false
+categories:
+ - altcanvas
+ - googlereader
+ - readerscope
+---
+
+<div class='post'>
+For past month or so, some of you (ReaderScope users) might be facing problems if you were using AutoLogin. This happened after I updated the login mechanism&nbsp;in&nbsp;<a href="http://jyro.blogspot.com/2010/03/readerscope-1823-new-authentication-and.html">v1.8.2</a>&nbsp;to support Google Reader authentication changes. I won't go into the details, but AutoLogin is very likely to fail in the new scheme of authentication. So I advised some of you who sent me the error reports to switch to Username/Password login. It was a temporary solution.<br /><br />Today I am glad to announce that starting with v1.9 ReaderScope supports <b>OAuth</b> login for Google Reader - the right way<b> to login </b><i><b>without password <span class="Apple-style-span" style="font-style: normal;"><span class="Apple-style-span" style="font-weight: normal;">(compared to other password less alternatives at least)</span></span></b></i>.<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://farm3.static.flickr.com/2074/1529124811_67fcabab2d_m_d.jpg" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" src="http://farm3.static.flickr.com/2074/1529124811_67fcabab2d_m_d.jpg" /></a></div><br />This has been possible only after Google Reader team <a href="http://groups.google.com/group/fougrapi/browse_thread/thread/4430c9a6dea4d70f">enabled OAuth login</a>&nbsp;for their service a few weeks ago. I have been working since to get ReaderScope working with OAuth. Not all the time was spent on OAuth, but in order to implement OAuth I had redesign entire networking layer of ReaderScope (which I am glad I did because I could improve some things along the way).<br /><br />Finally RS with OAuth is ready. If you were still using AutoLogin, then after upgrading to v1.9 you will get a warning message that AutoLogin is no longer supported and you will be automatically logged out. On restart you will be taken to Login screen where you can start doing OAuth login.<br /><br />If you are using username/password, then after upgrading to v1.9 you will get a message informing that a new password less login option is available. You won't be forcefully logged out though. You can choose to logout and relogin.<br /><br />I have been testing most of the functionality in past couple of days. But I won't be surprised if some holes were left out. Please report any problems you might face or sent crash reports if you get any.<br /><br />Enjoy the upgrade!</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Mariano</div>
+<div class='content'>
+Hehe, yeah, my coworkers in Pune already &quot;warned&quot; me, I even got a medical &quot;alert&quot; because of the weather from my employer. <br />But I have been there last August/September already and I am young(?) and healthy so I should be alright with &gt;40°C ;) <br />I will be in A/Ced rooms most the time anyway.</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; I am travelling to India next week anyway, so we can start then ;-)<br /><br />Cool. Welcome. Be prepared for some hot and humid weather though. Summer is not the best time of the year in this part of the world.</div>
+</div>
+<div class='comment'>
+<div class='author'>Mariano</div>
+<div class='content'>
+Jayesh,<br />thanks. Sounds good. It would be great, if you let me know if you learn something new about this auto-login thing.<br /><br />Bugabundo, never tried my hand on OAuth yet, but if the next Android OS version still doesn&#39;t offer a good solution I might try.<br />Sure, we go right on it ;-) I am travelling to India next week anyway, so we can start then ;-)</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+hey Mariano.<br />Still having trouble with the OAuth code in NewsRob?<br /><br />you guys should merge and make the BEST GReader sync app</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+AFAIK, OAuth tokens never automatically expire (unlike the Auth  token obtained from ClientLogin). Only when user explicitly revokes the access at service provider&#39;s site (Google in this case), will the oauth tokens become invalid. So there is no need for auto-relogin logic.</div>
+</div>
+<div class='comment'>
+<div class='author'>Mariano</div>
+<div class='content'>
+Jayesh, great job!<br /><br />Does auto-relogin work in an OAuth scenario?</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+been using android for an year :)<br />i always take care with spaces!<br /><br />i&#39;ll try again, and if i get an error, ill use user/pass login and send u the log.<br />thanks</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; nope. i see the 2nd outcome!<br /><br />In that case, the pasted code is incorrect. Double check if you are not adding extra whitespaces before or after the code unknowingly.<br /><br />Also the auth error at this point is getting logged in your logs. Unfortunately to see those logs you will have to get into the app, for which you will have to first login (you can use username/password for that).<br /><br />If you do reach the log, email it to me, that will help.</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+nope. i see the 2nd outcome!<br /><br />btw that toast could be a long one, instead of the short. i can barelly read the error message</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Let me put down the steps that are expected<br /><br />1. Login screen shows<br />2. You press &#39;OAuth Login&#39; button<br />3. Browser opens, visits Google page. You get two buttons &quot;Grant Access&quot;, &quot;Deny Access&quot;<br />4. You choose &quot;Grant Access&quot;<br />5. Google shows a page with the verification code<br />6. Using Menu&gt;Select text, you copy the verification code<br />7. Press back 2 (or maybe 3) times to come back to ReaderScope Login screen.<br />8. The login screen now has &#39;Verification code&#39; box. You long press it and paste the code.<br />9. You press the &#39;Proceed&#39; button.<br /><br />At this point only two possible things can happen <br />1. Successful Authentication: upon which the tags and subscriptions will automatically start downloading<br />2. Failure: You will see a toast saying &quot;Authentication failed. Please try again&quot;. The &quot;OAuth Login&quot; button will reappear.<br /><br />Do you see something other than this after pressing &#39;Proceed&#39;?</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+i tried it several times, even closing RS in between.<br /><br />maybe i&#39;m doing it wrong! whats the *proper* way to leave the browser?<br /><br />i tried back button till RS, and long press HOME to choose RS</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+That looks like a temporary error. Can you try again? The error says the browser could not be started (for some unknown reason)</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+i just logout of the old auth via pass, did the oauth steps, pasted the code, and pushed Procede, only to get a error:<br /><br /><br />I/ActivityManager(  143): Starting activity: Intent { act=android.intent.action.VIEW cat=[android.intent.category.BROWSABLE] dat=https://www.google.com/a/UniversalLogin?continue=https%3A%2F%2Fwww.google.com%2Faccounts%2FOAuthAuthorizeToken%3Fhl%3Den%26btmpl%3Dmobile%26oauth_token%3D4%XXXXXXX--_5%26hd%3Ddefault&amp;continue2=https%3A%2F%2Fwww.google.com%2Fa%2F%7B%7Bdomain%7D%7D%2FOAuthAuthorizeToken%3Fhl%3Den%26btmpl%3Dmobile%26oauth_token%3D4%XXXXXXXXX--_5&amp;spl=true&amp;hl=en&amp;btmpl=authsub cmp=com.android.browser/.BrowserActivity }<br />D/webviewglue(21050): nativeDestroy view: 0x70c7b0<br />I/ActivityManager(  143): moveTaskToBack: 154<br />D/dalvikvm(19194): GC freed 12476 objects / 781880 bytes in 175ms</div>
+</div>
+</div>

@@ -1,0 +1,9 @@
+---
+layout: post
+title: ""
+date: 2007-08-08
+comments: false
+---
+
+<div class='post'>
+I had this thought a month ago when I was first time learnt how to embed a python interpreter in a C program. It made me thinking about possibilities. So here is one thought.<br /><br />What if a linux kernel has an embedded interpreter?<br /><br />In a computer system the OS kernel is the arbiter, that manages sharing of resources to applications. There are two interfaces to the kernel - 1. syscall interface - by which applications interact with kernel; 2. tuning interface - this is used to read or modify some kernel parameters - e.g. proc filesystem, sysfs. The second interface is of interest here.<br /><br />Instead of just reading or writing some kernel parameters, it would be great if we can programmatically change them. So we can imagine a "scriptfs" on the lines of procfs. So I would write a python script memory-swapping-policy.py and do "cat memory-swapping-policy.py > /dev/script "; where /dev/script would be a device node via which kernel will accept scripts to execute. This way one can achieve the classic goal of separating policy from mechanism. Now the scheduling algorithm could be expressed in a script and kernel will just provide a mechanism of executing its logic.</div>

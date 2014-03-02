@@ -1,0 +1,66 @@
+---
+layout: post
+title: "ReaderScope 1.1.2"
+date: 2009-09-16
+comments: false
+categories:
+ - altcanvas
+ - android
+ - readerscope
+---
+
+<div class='post'>
+Two of the requests I have seen so far:<br />1) How can I download ONLY new/unread items and no read items<br />2) How can I see only NEW items<br /><br />In this release I have tried to address them.<br /><br />1) If you want your periodic downloads to only download the new items, then the way to do it is NOT to choose any favorite tags or any favorite feeds. With no favorite feeds/tags, ReaderScope will query Google reader for a generic list of new items in your reading list. This will get you only the new items. This was possible already; but there was a problem to access these only new items.<br />The first screen of ReaderScope is designed to give you a summary of all your Google Reader feeds. So it will show you all the feeds and all the unread counts irrespective of they are downloaded in the cache or not. So you couldn't tell which feeds have cached items. In v1.1.2, the feeds that have at least one cached item will be marked brighter than the rest. So now you can see which feeds have items downloaded from the last periodic download.<br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_W6UcJjyXr24/SrEWCklCruI/AAAAAAAADZU/KsDztJOrH7U/s1600-h/cachednews.png"><img style="cursor: pointer; width: 400px; height: 180px;" src="http://4.bp.blogspot.com/_W6UcJjyXr24/SrEWCklCruI/AAAAAAAADZU/KsDztJOrH7U/s400/cachednews.png" alt="" id="BLOGGER_PHOTO_ID_5382107263119044322" border="0" /></a><br /><br />2) Some users prefer to only read the latest downloaded news. For them the new unread items are now highlighted. As before, the read items will appear in dull colors. The unread items will appear in white color and the unread items that are less than 24hr old are shown in bold white letters.<br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_W6UcJjyXr24/SrEWCFrz3-I/AAAAAAAADZM/6CGGbf1OYHc/s1600-h/hotnews.png"><img style="cursor: pointer; width: 400px; height: 285px;" src="http://3.bp.blogspot.com/_W6UcJjyXr24/SrEWCFrz3-I/AAAAAAAADZM/6CGGbf1OYHc/s400/hotnews.png" alt="" id="BLOGGER_PHOTO_ID_5382107254825934818" border="0" /></a><br /><br />Let me know if this works for you.<br /><br />For those who found the filter button introduced in last release useful; here is a good news. If you want to hide read items permanently, then go to Settings->Miscellaneous. Check "Remember filter state for read items". Now if you turn the filter ON to hide the read items, it will remain so until you explicitly turn it OFF.<br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_W6UcJjyXr24/SrEWpMIlwLI/AAAAAAAADZc/Yd8UUEoO9RI/s1600-h/screenshot5.png"><img style="cursor: pointer; width: 334px; height: 114px;" src="http://1.bp.blogspot.com/_W6UcJjyXr24/SrEWpMIlwLI/AAAAAAAADZc/Yd8UUEoO9RI/s400/screenshot5.png" alt="" id="BLOGGER_PHOTO_ID_5382107926572155058" border="0" /></a><br /><br />For those who read news by labels, it becomes confusing to tell which feed the  news came from. That problem is addressed in v1.1.2 too.<br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/_W6UcJjyXr24/SrEXDqyctFI/AAAAAAAADZk/mIjLdK9gNOU/s1600-h/screenshot6.png"><img style="cursor: pointer; width: 322px; height: 315px;" src="http://2.bp.blogspot.com/_W6UcJjyXr24/SrEXDqyctFI/AAAAAAAADZk/mIjLdK9gNOU/s400/screenshot6.png" alt="" id="BLOGGER_PHOTO_ID_5382108381477385298" border="0" /></a><br /><br />(Now I won't mistake news from my <a href="http://www.theonion.com/content/index">Onion</a> feed for genuine news ;) )<br /><br />Thanks for the error reports. I am working on them.<br />Let me know if this version fits your needs.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+One more idea:<br />A progress circle while entering the labels. <br />Mine take about 3sec, and it just stays there doing nothing, leading an user to push more buttons</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+Hmm. That looks like a bug. &quot;More&quot;, &quot;Refresh&quot; behavior, while reading by label is not well tested. Looking into it.</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+Somethng is not behaving as expected.<br />I read all items on a label,pressed refresh and more several,  no new unread items show,but number says 1000.<br />Visiting greader mobile I have many unread.<br />why aren&#39;t they pulled?</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; I guess I need to RTFM about those buttons<br /><br />Actually the colors are not very different for cached/non-cached feeds. So if all the feeds at the top had cached items they all will look white and you won&#39;t notice the difference. Scroll down to the feeds you haven&#39;t read, and you will see them in dull colors.<br /><br />I&#39;ll see if the difference can be made clearer.<br /><br />&gt; If items are caches will it only parse those or try to use internet?<br /><br />If there is at least one item (read/unread) that is cached, then the feed will show in white color and tapping on it will NOT lead to network fetch. If you want more items, you can then press &quot;More&quot; or &quot;Refresh&quot;.</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+Cool. I guess I need to RTFM about those buttons or they need to be made more clear.<br />If items are caches will it only parse those or try to use internet?</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; i have no idea if the current feed is cached of if it will download stuff.<br />maybe a color icon on the feed (red/green) to show it is cached or not??<br /><br />This is the exact problem that&#39;s solved in v1.1.2. The feeds that have cached items appear white. The ones that don&#39;t have cached items will appear little dull. See the first image in this post.<br /><br />&gt; I had a few crashes when i tried to set 100 notices. i&#39;ll try to logcat and send your way.<br /><br />Yeah, please send the report. I will check it out.<br /><br />&gt; Pressing the MORE button would download newer, intead paging to unread cached items.<br /><br />Actually pressing MORE won&#39;t download newer items; but older items. I think that&#39;s what you meant. It will however download read+unread items. I would have loved to only download unread items; but I couldn&#39;t find any way in the undocumented Google Reader API to do that.</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+wrote so much that i ended not making as point:<br />if i cache items, *how* do i read only those?<br />Pressing the MORE button would download newer, intead paging to unread cached items.</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+well to more clear, i would like for it to be more clear when going online.<br />But i guess i must *know* that if I refresh a feed, it *should* go online.<br /><br /><br />The prob i have with offline caching is that besides the amount of cache that is listed on the Smart Settings menu i have no idea if the current feed is cached of if it will download stuff.<br />maybe a color icon on the feed (red/green) to show it is cached or not??<br /><br />I had a few crashes when i tried to set 100 notices. i&#39;ll try to logcat and send your way.<br /><br /><br />so i get this clear: 100 posts, means 100 per feed item?</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; ie I may not want the app to use my scarce 3G data plan to download new items (or images).<br /><br />I assume you have tried Settings-&gt;Smart Settings. There if you choose &quot;Perform Periodic Download on &quot; - &quot;Wifi Only&quot;; then it won&#39;t download if the network is 3G/Mobile. <br /><br />Any network actions that user triggers from GUI (download new items/ refresh,  marking the items read, etc.) they will go over any network that is available at the time - wifi/mobile. Are you suggesting that you want a way to turn that off too?<br /><br />If so, it sounds a legit feature. I&#39;ll think about it. Just let me know if you meant something else.<br /><br />&gt; Its a very strange behavior i see, caching feeds, and then see it load/downloading images.<br /><br />The background download service first downloads all the news items you specify. At the end, it works on caching the contents of news item (i.e. embedded images, etc.) That&#39;s when you see &quot;Caching news content&quot; in the notification progress bar. <br /><br />It can take a long time, depending upon how rich the content of the HTML page is. If you don&#39;t want it to do that, then uncheck the &quot;Cache news content&quot; checkbox. That will also turn off deep caching.</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+thanks so much for all the improvements.<br />I feel bad asking for more stuff.<br /><br />But theres a *real* one that i need, now that u fixed all other:<br />*easy* way to control online/offline status.<br />ie I may not want the app to use my scarce 3G data plan to download new items (or images).<br /><br />Would be great to sync on WiFi, and then put the app on Offline mode and it would not use web anymore, until user requested so.<br /><br />Its a very strange behavior i see, caching feeds, and then see it load/downloading images.</div>
+</div>
+</div>

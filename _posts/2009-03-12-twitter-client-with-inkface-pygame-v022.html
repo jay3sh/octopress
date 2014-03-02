@@ -1,0 +1,30 @@
+---
+layout: post
+title: "Twitter client with inkface-pygame v0.2.2"
+date: 2009-03-12
+comments: false
+categories:
+ - altcanvas
+ - svg
+ - inkscape
+ - twitter
+ - inkface
+ - GUI
+ - maemo
+---
+
+<div class='post'>
+Here is an update on the Inkface library. But before that let me give a background of the project for the benefit of new readers that will be reading this post via Planet Maemo.<br /><br />Inkface is an SVG based GUI framework. Unlike the desktops - where GUI components need to be keyboard/mouse friendly; the handheld GUIs need to be finger friendly. Therefore the handheld GUI components should be naturally manipulatable - like parts of an image. Therefore inkface provides a framework in which, GUI is composed in an image editor like Inkscape, instead of rigidly coded in the program. The various elements of SVG image are presented as python objects to the programmer who can then write his program logic using these elements as widgets.<br /><br />The current version of inkface uses pycairo for vector graphics rendering and uses pygame as backend surface to draw on. A clutter backend is in the plans.<br /><br />With that background, let me show a demo of an app that I designed (in Inkscape) and coded (in python) using inkface-pygame library v0.2.2. It's a twitter client. The demo shows how the GUI can be changed vastly by merely changing the SVG files and doing no change in the code at all. (the --theme option tells the app to just use a different set of SVG files) The first one is the default theme and the later has a vintage look.<br /><br /><embed src="http://blip.tv/play/AfLbYAA" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" height="530" width="724"></embed><br /><br />The whole GUI consists of only 2 SVG images (corresponding to 2 screens - login and main twits page). So to create a new theme one only needs to create/change these two SVG files in Inkscape. Compare this to the traditional approach where a theme consists of tens of PNG images of specific sizes.<br /><br />I was aiming to release it as an app for diablo, but I had to postpone the plan. For improving the performance during animation, I used pygame's features that are only available in v1.8.x and I later found that Diablo ships with pygame v1.7.x. So I need to work around this incompatibility before I release it for n8x0 devices.<br /><br />For more information on the project check out the <a href="http://code.google.com/p/altcanvas/wiki/InkFace">wiki</a>. You can download v0.2.2 tarball from <a href="http://altcanvas.googlecode.com/files/inkface-pygame_0.2.2.tar.gz">here</a>. It is pure python code and can be tried on desktop. For details on the changelog of v0.2.2 check my post on the mailing list <a href="http://groups.google.com/group/inkface/browse_thread/thread/e66633a62a80f01">here</a>.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; Maybe you can post a video of this app running on your N810?<BR/><BR/>I am definitely going to post a video of this running in Dialo SDK. However, unfortunately I have lost my n810 to a pickpocketer last month :(( [I know. It&#39;s hard to get over]<BR/><BR/>I am trying to see if I can get inkface-pygame working on my Neo Freerunner, that will at least give me some feel of how it performs on real hardware. <BR/><BR/>I will release the deb packages for all to try and hopefully someone will report back after trying it on their n810.<BR/><BR/>&gt; on-screen keyboard for N800 users?<BR/><BR/>Yeah sure. I have designed virtual keyboards with every version of inkface. For the inkface-pygame there is a simple animated keyboard with three themes available under tests directory (inkface-pygame/tests/keyboard.py)</div>
+</div>
+<div class='comment'>
+<div class='author'>thp</div>
+<div class='content'>
+Neat. I wonder how the performance on N8x0 is. Maybe you can post a video of this app running on your N810?<BR/><BR/>Also, is there some way of having an on-screen keyboard for N800 users?</div>
+</div>
+</div>

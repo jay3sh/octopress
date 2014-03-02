@@ -1,0 +1,9 @@
+---
+layout: post
+title: "repeat (ps | grep) = filtered top"
+date: 2005-05-06
+comments: false
+---
+
+<div class='post'>
+If you wished you could have grep'd and monitored only few processes in top, this script is for you - ptop.sh:<br /><br /><span style="font-family: courier new;">while(true)<br />do<br />ps -ef | grep $1<br />sleep 1<br />clear<br />done<br /><br /><span style="font-family: times new roman;"><span style="font-family: arial;"></span></span><span style="font-family: georgia;">Run it:<br /><span style="font-family: courier new;">% ptop.sh xterm<br /><br /><span style="font-family: georgia;">And you can see all the xterms currently running and refreshed every second.</span><br /></span></span></span></div>

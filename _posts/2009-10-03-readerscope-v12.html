@@ -1,0 +1,32 @@
+---
+layout: post
+title: "ReaderScope v1.2"
+date: 2009-10-03
+comments: false
+categories:
+ - altcanvas
+ - googlereader
+ - android
+ - readerscope
+---
+
+<div class='post'>
+After 1 week of reimplementation of news cache, 1 day of testing and 1 last hour of crazy epiphanies and patches... v1.2 is out.<div><br /></div><div>Here is what is new.</div><div><br /></div><div>With the brand new caching scheme, you can store your bulky news cache on SDCard. Right now my HTC magic is pulling about 1000 images from web (which must be total 10-20MB in size), but the app manager shows ReaderScope only taking 588KB on phone. Because all the content is going to the SDCard.</div><div><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_W6UcJjyXr24/SseGbAi29XI/AAAAAAAADZ8/nFl85SSuqd8/s1600-h/storage-sdcard.png"><img style="cursor:pointer; cursor:hand;width: 317px; height: 161px;" src="http://4.bp.blogspot.com/_W6UcJjyXr24/SseGbAi29XI/AAAAAAAADZ8/nFl85SSuqd8/s400/storage-sdcard.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5388423277732885874" /></a></div><div><br /></div><div>Also if you do periodic downloads with caching the content, you will notice that the subsequent downloads will take significantly shorter times. This is because, the new caching mechanism accurately downloads only the content that's not in the cache.</div><div><br /></div><div>In addition, there are few new features that users have been asking for.</div><div><br /></div><div><b>Mark All As Read</b></div><div><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_W6UcJjyXr24/SseIc-zAzvI/AAAAAAAADaE/SCQEGJ0zYMA/s1600-h/mark-all-read.png"><img style="cursor:pointer; cursor:hand;width: 318px; height: 193px;" src="http://1.bp.blogspot.com/_W6UcJjyXr24/SseIc-zAzvI/AAAAAAAADaE/SCQEGJ0zYMA/s400/mark-all-read.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5388425510646763250" /></a></div><div><br /></div><div>You can mark all the items in a feed read. Does the same function as its counterpart in Google Reader web interface.</div><div><br /></div><div><b>Share with note</b></div><div><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_W6UcJjyXr24/SseIdFBukqI/AAAAAAAADaM/GLIqlsb6y5s/s1600-h/share-with-note.png"><img style="cursor:pointer; cursor:hand;width: 315px; height: 232px;" src="http://4.bp.blogspot.com/_W6UcJjyXr24/SseIdFBukqI/AAAAAAAADaM/GLIqlsb6y5s/s400/share-with-note.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5388425512319095458" /></a><br /></div><div><br /></div><div>You can just "Share", or you can add a note if you wish. Again same job as its counterpart in Google Reader web interface.</div><div><br /></div><div><b>Manual override to go offline</b></div><div><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_W6UcJjyXr24/SseIdfTA8YI/AAAAAAAADaU/isaX7Zw8iK8/s1600-h/go-offline.png"><img style="cursor:pointer; cursor:hand;width: 168px; height: 75px;" src="http://3.bp.blogspot.com/_W6UcJjyXr24/SseIdfTA8YI/AAAAAAAADaU/isaX7Zw8iK8/s400/go-offline.png" border="0" alt="" id="BLOGGER_PHOTO_ID_5388425519370924418" /></a></div><div><br /></div><div>One loyal user of ReaderScope has been asking for this feature for a while. It has very practical use for certain. I finally got around to implementing it in v1.2. There are situations when you are online, but you don't want ReaderScope to use the network (because it costs $$). You could already customize the periodic background downloads to not use such specific network. But, you may want to restrict GUI's access to the network too. While you are reading the news, ReaderScope marks the items read, stars/shares them if you choose - this is synced with Google Reader over network. </div><div><br /></div><div>With the "Go Offline" button, all these front-end actions will be batched instead of doing instant sync over the network (and you will see them in the Pending notification at the top, the one you see when you are actually offline). When you want to go online with the right kind of network, choose "Go Online" and tap on the notification, it will sync your actions.</div><div><br /></div><div>Moreover, some bug fixes have also gone in. </div><div><br /></div><div>Hopefully you will enjoy the new version. It's not unlikely that some silly bugs went unnoticed during this big rewrite of the caching mechanism. If you see any problems or hit any crashes, please email me the crash report (using the in built crash reporter).</div><div><br /></div><div>Enjoy!</div><div><br /></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+next version try to pick my idea :)</div>
+</div>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+&gt; right now *all* its contents get listed on Gallery, which kinda sucks <br /><br />Nice suggestion. But are you sure, it the Gallery app will ignore hidden files?<br /><br />&gt; only 10% of my shared items have a note. cant this be two buttons instead (like GReader does) ?<br /><br />i use it only 1% of times. :) I had considered putting two separate buttons. But the screen space is limited. Besides, the dialog clearly indicates the note is optional. So we save a 48x48 screen space, but add an extra tap. One can argue either way, but I had to pick one.</div>
+</div>
+<div class='comment'>
+<div class='author'>(``-_-´´) -- BUGabundo</div>
+<div class='content'>
+thanks for the offline and markall :)<br /><br />two tiny things:<br />can the cache folder be hidden or have the images prefixed with an . (dot) ?<br /><br />right now *all* its contents get listed on Gallery, which kinda sucks when I have ~20MiBs of images<br /># du webcontent -h<br />18.7M webcontent<br /><br /><br />another future improvement, is the Share with note. although i love it, only 10% of my shared items have a note. cant this be two buttons instead (like GReader does) ?</div>
+</div>
+</div>

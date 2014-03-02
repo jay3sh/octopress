@@ -1,0 +1,17 @@
+---
+layout: post
+title: "The "Screen""
+date: 2007-07-17
+comments: false
+---
+
+<div class='post'>
+Thanks to a friend who introduced me to the <a href="http://www.kuro5hin.org/story/2004/3/9/16838/14935">screen utility</a> about a year ago. It is a very fine utility for unix programmers/users who spend most of the time using CLIs. I would say it is a desktop virtualization solution applied to command line terminal. It is to the command prompt, what VNC is to the graphical desktop. To learn more follow the above link or google. It is installed on almost all linux distributions by default, so you can just start using it right away.<br /><br />I was however slow in adopting it. Mainly because switching between the screens wasn't so quick. The screen command line utility gives an option of creating tabs in one screen and switching between them, but that meant mastering several key sequences. So I wrote my own wrapper script to do the job. Following is the code. Save it in a file and name it suitably (use a short name that's handy - I call it 'sc') and just execute it.<br /><br />The code is available <a href="http://jayeshsalvi.googlepages.com/sc">here</a><br /><br />Here is a sample run:<br /><pre><br />jayesh@bluebox [~] sc --help<br />Usage: sc<br />Generates list of screens if available and gives a prompt<br />Valid commands to enter at prompt --><br />new-&lt;NEW_SCREEN&gt; - creates a new screen with name NEW_SCREEN<br />                   and connects to it<br />[number]         - number is the index of the screen you want<br />                   to connect to<br />q                - quit<br /><br />jayesh@bluebox [~] sc<br />Create new screen. Use the command 'new-<NEW_SCREEN_NAME>'<br />>>new-root<br />[Now you can login as root on this user to do all administrative tasks]<br /><br />..... <br />[create bunch of other screens for others tasks you do -<br /> compiler,editor, etc.]<br /><br />jayesh@bluebox [~] sc<br />0] compiler<br />1] root<br />2] editor<br />>> 1<br /><br />[Now you connect to screen 1, where you are logged in as user. <br />You don't have to enter root password again-n-again]<br /></pre><br /><br />Suggestions are always welcome!</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jayesh</div>
+<div class='content'>
+I realized that this script doesn't work quite good on Mac OSx. It is still usable, but it shows some bogus entries as screen names - named (Attached), (Detached). This is because my sed text processing fails. After looking more in deep I found that same regular expressions won't work on sed installed on Mac OSx, while they did work on my linux desktop. For now I attributed this to behavior difference of sed on these two OSes.</div>
+</div>
+</div>

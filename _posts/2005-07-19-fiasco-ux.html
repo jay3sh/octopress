@@ -1,0 +1,9 @@
+---
+layout: post
+title: "fiasco UX"
+date: 2005-07-19
+comments: false
+---
+
+<div class='post'>
+Recently I found about yet another way of running L4 microkernel. Fiasco UX runs on top of Linux. The bootstrapping tasks of L4 micro-kernel are modified to run on top of linux, and the servers up the stack run unmodified. This way crashing of an experiment does not need rebooting of the machine - same advantages as running the OS on top of a simulator. Fiasco UX has a kernel debugger as well, and I would think that fiasco-UX is less CPU intensive alternative to a complete processor simulator.<br /><br />Starting using fiasco-UX is relatively easy, considering that you don't have to risk other OSes on your machine while doing this. Checkout l4, dope, l4Env modules from the TU Dresden's CVS repository. Build the fiasco kernel for UX inside l4/kernel/fiasco. Follow the instructions on:<br /><a href="http://os.inf.tu-dresden.de/fiasco/ux/building.shtml">http://os.inf.tu-dresden.de/fiasco/ux/building.shtml</a><br /><br />Then build the various servers provided under l4/pkg/ directory. These servers include sigma0, rmgr, log, names, etc. Compile these servers step by step. Once you have enough binaries you can <a href="http://os.inf.tu-dresden.de/fiasco/ux/using.shtml">launch fiasco microkernel as any other linux application</a>.<br /><br />Besides this, I found link to the slides of a course being taught at Karlsure university on microkernel programming, thanks to a post on l4-hackers mailing list.<br /><a href="http://os.inf.tu-dresden.de/Studium/KMB/">http://os.inf.tu-dresden.de/Studium/KMB/</a><br /><br />Many slides are helpful in explaining the key L4 concepts. It also involves a project that involves developing a simple game on top of L4.<br /><br />Will post more soon...</div>
